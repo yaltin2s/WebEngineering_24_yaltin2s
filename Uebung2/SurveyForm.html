@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Survey Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto">
+    <style>
+      body {
+        background-color: #a9d7d1;
+        font-family: 'Roboto';
+      }
+      .container {
+        background-color: snow;
+        border-radius: 15px;
+        width: 650px;
+        padding: 20px;
+        margin: 0 auto;
+      }
+      table{
+        margin: 0 auto;
+        padding: 0px;
+      }
+      th {
+        text-align:right;
+        padding: 5px 10px;
+      }
+      tr{
+        height: 5px ;
+      }
+      #id{
+        text-align: left;
+        width: 30%;
+      }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center" >Survey Form</h1>
+    <div class="container">
+      <div style="text-align: center">
+        <p>Let us know how we can improve freeCodeCamp.</p>
+      </div>
+        <table>
+          <tr>
+            <th>
+                <label for="name">Name:</label>
+            </th>
+            <th id="id">
+                <input type="text" id="name" placeholder="Enter your name">
+            </th>
+          </tr>
+          <tr>
+            <th>
+                <label for="email">Email:</label>
+            </th>
+            <th id="id">
+                <input type="text" id="email" placeholder="Enter your Email">
+            </th>
+          </tr>
+          <tr>
+            <th>
+                <label for="age">Age:</label>
+            </th>
+            <th id="id">
+                <input type="text" id="age" placeholder="Age">
+            </th>
+          </tr>
+          <tr>
+            <th>
+            <label >Which option best describes your current id?</label>
+            </th>
+            <th id="id">
+              <select>
+                <option>Student</option>
+                <option>Teacher</option>
+              </select>
+            </th>
+          </tr>
+          <tr>
+            <th style="vertical-align: top;">
+              <label>How likely is that you would recommend freeCodeCamp to a friend?</label>
+            </th>
+            <th id="id">
+              <input type="radio" id="definitely"  value="Definitely">
+              <label for="definitely">Definitely</label><br>
+              <input type="radio" id="maybe"  value="Maybe">
+              <label  for="maybe">Maybe</label><br>
+              <input type="radio" id="not-sure" value="Not sure">
+              <label  for="not-sure">Not sure</label>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <label>What do you like most in FCC?</label>
+            </th>
+            <th id="id">
+              <select>
+                <option>Select an option</option>
+              </select>
+            </th>
+          </tr>
+          <tr>
+            <th style="vertical-align: top;">
+                <label >Things that should be improved in the future (Check all that apply):</label>
+            </th>
+            <th id="id">
+              <input type="checkbox" id="front-end" name="improvements" value="Front-end Projects">
+              <label for="front-end">Front-end Projects</label>
+              <input type="checkbox" id="back-end" name="improvements" value="Back-end Projects">
+              <label  for="back-end">Back-end Projects</label>
+              <input type="checkbox" id="data-visualization" name="improvements" value="Data Visualization">
+              <label for="data-visualization">Data Visualization</label>
+            </th>
+          </tr>
+        </table>
+    </div>
+</body>
+</html>

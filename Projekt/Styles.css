@@ -1,0 +1,42 @@
+header {
+    background-color: #86B6F6;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: black;
+}
+section {
+    background-color: #EEF5FF;
+    content: "";
+    display: block;
+    clear: both;
+    color: black;
+}
+nav {
+    background-color: #ffc0c7;
+    padding: 10px;
+    display: flow;
+    text-align: center;
+    color: black;
+}
+aside {
+    background-color: #fff4a4;
+    padding: 15px;
+    text-align: center;
+    color: black;
+}
+aside{
+    background-color: azure;
+}
+article {
+    background-color: rgba(241, 240, 255, 0);
+    padding: 20px;
+    text-align: center;
+    color: black;
+}
+footer {
+    background-color: steelblue;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
