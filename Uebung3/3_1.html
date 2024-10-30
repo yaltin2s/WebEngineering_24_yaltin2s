@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Web Design</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            background-color: red;
+            text-align: center;
+            padding: 20px;
+        }
+        .main {
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .sidebar-left, .sidebar-right {
+            background-color: limegreen;
+            width: 20%;
+            padding: 20px;
+        }
+
+        .content {
+            background-color: blue;
+            flex: 1;
+            padding: 20px;
+        }
+
+        .sidebar-right {
+            background-color: magenta;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main {
+                flex-direction: column;
+            }
+            .sidebar-left {
+                width: 100%;
+                height: auto;
+            }
+            .sidebar-right{
+                align-items: flex-end;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="header"></header>
+    <main class="main">
+        <aside class="sidebar-left"></aside>
+        <section class="content"></section>
+        <aside class="sidebar-right"></aside>
+    </main>
+</div>
+</body>
+</html>

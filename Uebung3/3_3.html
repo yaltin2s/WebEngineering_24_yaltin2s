@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>3_3</title>
+    <style>
+        *{
+            font-family: "Lucida Console", "Courier New", monospace;
+        }
+         header{
+             display:flex;
+             padding: 1em;
+             margin: 0;
+             background-color: #363636;
+             align-items: center;
+             flex-direction:row ;
+             justify-content: space-around;
+        }
+         body{
+             background-color: #e9e9e5;
+
+         }
+         header p{
+             color: #e9e9e5;
+         }
+         h1{
+             display: flex;
+             justify-content: center;
+         }
+         .container{
+             background-color: #e9e9e5;
+             display: grid;
+             grid-template-columns: 1fr 1fr;
+             grid-template-rows: none;
+             justify-content: flex-start;
+             margin: 0 300px 100px 100px;
+
+         }
+         img{
+             display: flex;
+             max-width: 50%;
+             height: 300px;
+             margin-top: 1em;
+             border: 1px black solid;
+             border-radius: 10px;
+         }
+         aside{
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             flex-direction: column;
+         }
+         button{
+             display: flex;
+             background-color: #f68d37;
+             color: #e9e9e5;
+             border-radius: 5px;
+             border-color: #e9e9e5;
+             margin: 10px;
+             justify-content: center;
+             padding: 10px 50px 10px 50px;
+
+         }
+         .footer{
+             display: flex;
+             justify-content: center;
+             background-color: #363636;
+             color: #e9e9e5;
+             height: 100px;
+             flex-direction: column;
+             align-items: center;
+
+
+         }
+    </style>
+</head>
+<body>
+<header>
+        <p >The book series</p>
+        <p >Testimonials</p>
+        <p> The Author</p>
+        <p> Free resources</p>
+</header>
+<h1><strong>You dont know JavaScript</strong></h1>
+<div class="container">
+        <img  src="https://kaul.inf.h-brs.de/ccm/we/ws24/resources/assets/landing-img.png" alt="bild">
+        <aside>
+            <p>Don´t just drift through Javascript.</p>
+            <p>Understand how Javascript works</p>
+            <p>Start your journey through the bumpy side of Javascript</p>
+            <button>ORDER YOUR COPY NOW</button>
+
+        </aside>
+</div>
+<div class="footer">
+    <p>The first ebook in the book series is absolutely free</p>
+    <button>FIND OUT MORE ABOUT THIS OFFER</button>
+</div>
+</body>
+</html>

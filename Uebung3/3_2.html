@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Web Design</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-areas:
+        "header"
+        "main";
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+        }
+        /* Bereiche für Mobile */
+        .header {
+
+            grid-area: header;
+            background-color: red;
+        }
+        .main {
+            grid-area: main;
+            display: grid;
+            grid-template-areas:
+        "sidebar-left""content"
+        "sidebar-right";
+            grid-template-columns: 1fr;
+        }
+        .sidebar-left {
+            grid-area: sidebar-left;
+            background-color: limegreen;
+        }
+        .content {
+            grid-area: content;
+            background-color: blue;
+        }
+        .sidebar-right {
+            grid-area: sidebar-right;
+            background-color: magenta;
+        }
+        /* Desktop-Ansicht mit Grid */
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 25% 50% 25%;
+                grid-template-areas:"header header header"
+                "sidebar-left content sidebar-right"
+                " "
+                 /* Sidebar links und rechts 1/3, Content 2/3 */
+            }
+            .main {
+                display: grid;
+                grid-template-columns: 25% 50% 25%;
+                grid-template-areas:
+            "sidebar-left content sidebar-right";
+            }
+            .sidebar-left, .sidebar-right, .content {
+                height: auto;
+                float: left;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="header">Header</header>
+    <main class="main">
+        <aside class="sidebar-left">Sidebar Left</aside>
+        <section class="content">Main Content</section>
+        <aside class="sidebar-right">Sidebar Right</aside>
+    </main>
+</div>
+</body>
+</html>
