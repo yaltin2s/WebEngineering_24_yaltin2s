@@ -1,4 +1,12 @@
+body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
 header {
+    grid-area: header;
+    width: 100%;
     background-color: #86B6F6;
     padding: 30px;
     text-align: center;
@@ -6,6 +14,8 @@ header {
     color: black;
 }
 section {
+    width: 50%;
+    grid-area: section;
     background-color: #EEF5FF;
     content: "";
     display: block;
@@ -13,13 +23,15 @@ section {
     color: black;
 }
 nav {
-    background-color: #ffc0c7;
+    grid-area: nav;
+    background-color: #becfc2;
     padding: 10px;
     display: flow;
     text-align: center;
     color: black;
 }
 aside {
+    grid-area: aside;
     background-color: #fff4a4;
     padding: 15px;
     text-align: center;
@@ -35,6 +47,7 @@ article {
     color: black;
 }
 footer {
+    grid-area: footer;
     background-color: steelblue;
     color: white;
     padding: 10px;
