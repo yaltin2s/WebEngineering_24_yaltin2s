@@ -2,20 +2,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:"antic salb", sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    background-color: #D9DCD6;
     line-height: 1.6;
-    color: #333;
+    color: #16425B;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
 header {
-    background-color: #4CAF50;
-    color: #fff;
+    background-color: #16425B;
+    color: #D9DCD6;
     padding: 10px 0;
     text-align: center;
 }
@@ -34,7 +35,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff;
+    color: #D9DCD6;
     text-decoration: none;
 }
 
@@ -49,8 +50,8 @@ main {
 }
 
 footer {
-    background-color: #4CAF50;
-    color: #fff;
+    background-color: #16425B;
+    color:#D9DCD6;
     text-align: center;
     padding: 10px 0;
 }
