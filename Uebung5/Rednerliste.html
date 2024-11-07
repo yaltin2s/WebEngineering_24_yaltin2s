@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rednerliste </title>
+</head>
+<body>
+<div id="rednerliste">
+    <h2>Rednerliste</h2>
+    <label for="neuerRedner"></label><input type="text" id="neuerRedner" placeholder="Neuer Redner">
+    <ul id="redner">
+    </ul>
+</div>
+<script>
+    const neuerRednerInput = document.getElementById('neuerRedner');
+    const rednerUl = document.getElementById('redner');
+    let aktuellerRedner = null;
+    function addRedner(name) {
+        const li = document.createElement('li');
+        li.innerHTML = `${name} <span class="zeit">00:00</span> <button class="start-stop">Start</button>`;
+        rednerUl.appendChild(li);
+        const startStopButton = li.querySelector('.start-stop');
+        const zeitSpan = li.querySelector('.zeit');
+        let startTime = null;
+        let intervalId = null;
+        startStopButton.addEventListener('click', () => {
+            // Stop the timer if it's already running for another speaker
+            if (aktuellerRedner && aktuellerRedner !== li) {
+                clearInterval(aktuellerRedner.timer);
+                aktuellerRedner.querySelector('.start-stop').textContent = 'Start';
+            }
+            // Toggle start/stop for the clicked button
+            if (startStopButton.textContent === 'Start') {
+                startStopButton.textContent = 'Stopp';
+                aktuellerRedner = li;
+                startTime = Date.now();
+                intervalId = setInterval(() => updateZeit(zeitSpan, startTime), 1000);
+                li.timer = intervalId;  // Store interval ID in li element for later clearing
+            } else {
+                startStopButton.textContent = 'Start';
+                clearInterval(intervalId);
+                li.timer = null;  // Reset timer reference
+            }
+        });
+        function updateZeit(span, start) {
+            const elapsedTime = Date.now() - start;
+            const minutes = Math.floor(elapsedTime / 60000);
+            const seconds = Math.floor((elapsedTime % 60000) / 1000);
+            span.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+    }
+    neuerRednerInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            addRedner(neuerRednerInput.value);
+            neuerRednerInput.value = '';
+        }
+    });
+</script>
+</body>
+</html>

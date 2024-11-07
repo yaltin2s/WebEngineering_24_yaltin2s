@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topologische Sortierung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #inputSection {
+            margin-bottom: 20px;
+        }
+        #relationList {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Topologische Sortierung von Vorrang-Relationen</h1>
+<div id="inputSection">
+    <label for="fromNode"><b>Knoten 1:</b></label>
+    <input type="text" id="fromNode" placeholder="z.B. A"><br>
+    <label for="toNode"><b>Knoten 2:</b></label>
+    <input type="text" id="toNode" placeholder="z.B. B"><br>
+    <button onclick="addRelation()">Relation hinzufügen</button>
+</div>
+<div id="relationList">
+    <h3>Aktuelle Relationen:</h3>
+    <ul id="relations"></ul>
+</div>
+<button onclick="calculateTopologicalSort()">Topologische Sortierung berechnen</button>
+<h3>Topologische Sortierung:</h3>
+<div id="output"></div>
+<button onclick="resetAll()">Reset</button>
+
+<script>
+    let relations = [];
+
+    function addRelation() {
+        const fromNode = document.getElementById('fromNode').value.trim();
+        const toNode = document.getElementById('toNode').value.trim();
+
+        if (fromNode && toNode) {
+            relations.push([fromNode, toNode]);
+            document.getElementById('relations').innerHTML += `<li>${fromNode} -> ${toNode}</li>`;
+            document.getElementById('fromNode').value = '';
+            document.getElementById('toNode').value = '';
+        } else {
+            alert("Bitte beide Knoten eingeben!");
+        }
+    }
+
+    function calculateTopologicalSort() {
+        const graph = buildGraph(relations);
+        const sorted = topologicalSort(graph);
+
+        if (sorted) {
+            document.getElementById('output').innerText = sorted.join(" -> ");
+        } else {
+            document.getElementById('output').innerText = "Keine topologische Sortierung möglich (Zyklen im Graphen).";
+        }
+    }
+
+    function buildGraph(edges) {
+        const graph = {};
+        edges.forEach(([from, to]) => {
+            if (!graph[from]) graph[from] = [];
+            if (!graph[to]) graph[to] = [];
+            graph[from].push(to);
+        });
+        return graph;
+    }
+
+    function topologicalSort(graph) {
+        const inDegree = {};
+        Object.keys(graph).forEach(node => { inDegree[node] = 0; });
+        Object.values(graph).forEach(neighbors => {
+            neighbors.forEach(neighbor => inDegree[neighbor]++);
+        });
+
+        const queue = [];
+        Object.keys(inDegree).forEach(node => {
+            if (inDegree[node] === 0) queue.push(node);
+        });
+
+        const sortedOrder = [];
+        while (queue.length > 0) {
+            const node = queue.shift();
+            sortedOrder.push(node);
+
+            graph[node].forEach(neighbor => {
+                inDegree[neighbor]--;
+                if (inDegree[neighbor] === 0) queue.push(neighbor);
+            });
+        }
+
+        if (sortedOrder.length === Object.keys(graph).length) return sortedOrder;
+        return null;
+    }
+    function resetAll() {
+        relations = [];
+        document.getElementById('relations').innerHTML = '';
+        document.getElementById('fromNode').value = '';
+        document.getElementById('toNode').value = '';
+        document.getElementById('output').innerText = '';
+    }
+</script>
+</body>
+</html>

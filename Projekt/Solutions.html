@@ -10,13 +10,17 @@
     body{
       background-color: #e9e9e5;
     }
+    header{
+        text-align: center;
+        color: #e9e9e5;
+        background-color: #16425B;
+        padding: 10px 0;
+    }
     .buttons{
       position: relative;
       display: grid;
       flex-direction: row;
       flex-wrap: wrap;
-
-      align-items: center;
       grid-template: "a a a"
                       "b b b"
                       "c c c"
@@ -25,8 +29,16 @@
       padding: 20px;
     }
     button{
-      color: #16425B;
-      background-color: #81C3D7;
+      color: #e9e9e5;
+      background-color: #16425B;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 5px;
+
+    }
+    button:hover{
+        color: #16425B;
+        background-color: #e9e9e5;
     }
     div{
       display: flex;
@@ -35,6 +47,9 @@
   </style>
 </head>
 <body>
+<header>
+    <h1>Lösungen von Übungen</h1>
+</header>
 <div class="buttons">
       <button>Übung 1</button>
       <button>Übung 2</button>
@@ -48,8 +63,6 @@
       <button>Übung 10</button>
       <button>Übung 11</button>
       <button>Übung 12</button>
-
    </div>
-
 </body>
 </html>
