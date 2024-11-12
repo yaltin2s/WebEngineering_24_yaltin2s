@@ -6,9 +6,10 @@
 </head>
 <body>
 <div id="rednerliste">
-    <h2>Rednerliste</h2>
-    <label><STRONG>Render:</STRONG></label>
+    <h1><strong>Rednerliste</strong></h1>
+    <label>Neuer Render:</label>
     <label for="neuerRedner"></label><input type="text" id="neuerRedner" placeholder="Neuer Redner">
+    <button onclick="addRedner(neuerRednerInput.value); neuerRednerInput.value = '';">Hinzufügen</button>
     <ul id="redner">
     </ul>
 </div>
