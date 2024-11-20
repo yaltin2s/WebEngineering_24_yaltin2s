@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Klammerpaare  Prüfung</title>
+  <style>
+    body {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      margin: 20px;
+    }
+    input{
+      width: 50%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid black;
+      border-radius: 10px;
+      outline: none;
+    }
+    input[type="text"].error{
+      border-color: red;
+      background-color: #ffe6e6;
+    }
+  </style>
+</head>
+<body>
+<h1>Klammerpaare Prüfung</h1>
+<p>Geben Sie eine Zeichenkette mit geschachtelten Klammern ein:</p>
+<input type="text" id="inputField"  placeholder="Geben Sie hier Ihre Zeichenkette ein...">
+ <script>
+   function checkKlammer(input) {
+     const stack=[];
+     const klammer={
+       '[':']',
+       '{':'}',
+       '(':')'
+     };
+     for(let char of input){
+       if(klammer[char]){
+         stack.push(char);
+       }else if(Object.values(klammer).includes(char)){
+         if(klammer[stack.pop()]!== char){
+           return false;
+         }
+       }
+     }
+     return stack.length=== 0;
+   }
+   //Creat Event Listener for Input
+   const inputField=document.getElementById('inputField');
+   inputField.addEventListener( "input", () =>{
+     const isValid = checkKlammer(inputField.value);
+     if(isValid){
+       inputField.classList.remove('error');
+     }else {
+       inputField.classList.add('error');
+     }
+   });
+ </script>
+
+/*  ******Bonus****** */
+/*Funktion Änderungen von Klammerpaare*/
+<script>
+  function checkKlammer(input, klammerpaare){
+    const stack= [];
+    const oefneKlammern = Object.keys(klammerpaare);
+    const geschlosseneKlammern= Object.values(klammerpaare);
+    for(let char of input){
+      if(oefneKlammern.includes(char)){
+        stack.push(char);
+      }else if( geschlosseneKlammern.includes(char)){
+        if(klammerpaare[stack.pop()]!==char){
+          return false;
+        }
+      }
+    }
+    return stack.length=== 0;
+  }
+  //Creat Event Listener for Input
+  const inputField=document.getElementById('inputField');
+  const klammerpaare={
+    "[": "]",
+    "{": "}",
+    "(": ")",
+    "<": ">", // Beispiel: Neue Klammerpaare
+    "/*": "*/" // Multichar-Klammern unterstützt
+  };
+  inputField.addEventListener("input", () => {
+    const isValid = checkKlammer(inputField.value, klammerpaare);
+    if (isValid) {
+      inputField.classList.remove("error");
+    } else {
+      inputField.classList.add("error");
+    }
+  });
+</script>
+</body>
+</html>

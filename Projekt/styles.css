@@ -4,7 +4,6 @@
     box-sizing: border-box;
     font-family:"antic salb", sans-serif;
 }
-
 body {
     background-color: #D9DCD6;
     line-height: 1.6;
@@ -13,14 +12,12 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
 header {
     background-color: #16425B;
     color: #D9DCD6;
     padding: 10px 0;
     text-align: center;
 }
-
 header h1 {
     margin-bottom: 10px;
 }
@@ -43,6 +40,7 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 main {
+
     flex: 1;
     padding: 20px;
     text-align: center;
@@ -53,4 +51,25 @@ footer {
     color:#D9DCD6;
     text-align: center;
     padding: 10px 0;
+}
+.me{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.details{
+    display: flex;
+    grid-template-columns:10% 90%;
+    flex-direction: row-reverse;
+}
+dl{
+    padding: 10px;
+    margin: 50px 10px 10px;
+    align-content: flex-start;
+}
+dt{
+    padding: 0 10px 10px 10px;
+    text-align: left;
 }
