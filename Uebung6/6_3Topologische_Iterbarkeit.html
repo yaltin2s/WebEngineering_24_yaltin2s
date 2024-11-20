@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vorrang Class with Generator</title>
+
+
+</head>
+
+<body>
+
+<script>
+
+    class Vorrang {
+
+        constructor(relations) {
+
+            this.graph = new Map();
+
+            this.inDegree = new Map();
+
+            relations.forEach(([source, target]) => {
+
+                if (!this.graph.has(source)) {
+
+                    this.graph.set(source, new Set());
+
+                    this.inDegree.set(source, 0);
+
+                }
+
+                if (!this.graph.has(target)) {
+
+                    this.graph.set(target, new Set());
+
+                    this.inDegree.set(target, 0);
+
+                }
+
+                this.graph.get(source).add(target);
+
+                this.inDegree.set(target, this.inDegree.get(target) + 1);
+
+            });
+
+            this.queue = [...this.inDegree.keys()].filter(node => this.inDegree.get(node) === 0);
+
+        }
+
+        *generateTopologicalOrder() {
+
+            while (this.queue.length > 0) {
+
+                const current = this.queue.shift();
+
+                yield current;
+
+                this.graph.get(current).forEach(neighbor => {
+
+                    this.inDegree.set(neighbor, this.inDegree.get(neighbor) - 1);
+
+                    if (this.inDegree.get(neighbor) === 0) {
+
+                        this.queue.push(neighbor);
+
+                    }
+
+                });
+
+            }
+
+        }
+
+    }
+
+    // Example usage:
+
+    const studentenLeben = new Vorrang([
+
+        ["schlafen", "studieren"],
+
+        ["essen", "studieren"],
+
+        ["studieren", "prüfen"]
+
+    ]);
+
+    document.write("<h1>Vorrang Sequence</h1>");
+
+    document.write("<ul>");
+
+    const iterator = studentenLeben.generateTopologicalOrder();
+
+    console.assert(iterator.next().value === "schlafen");
+
+    document.write(`<li>${iterator.next().value}</li>`);
+
+    console.assert(iterator.next().value === "essen");
+
+    document.write(`<li>${iterator.next().value}</li>`);
+
+    console.assert(iterator.next().value === "studieren");
+
+    document.write(`<li>${iterator.next().value}</li>`);
+
+    console.assert(iterator.next().value === "prüfen");
+
+    document.write(`<li>${iterator.next().value}</li>`);
+
+    console.assert(iterator.next().done === true);
+
+    document.write("</ul>");
+</script>
+</body>
+</html>

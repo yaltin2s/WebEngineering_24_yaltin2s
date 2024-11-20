@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Vorrang Class with Logging</title>
+</head>
+<body>
+
+<script>
+  class Vorrang {
+
+    constructor(relations) {
+
+      this.graph = new Map();
+
+      this.inDegree = new Map();
+
+      relations.forEach(([source, target]) => {
+
+        if (!this.graph.has(source)) {
+
+          this.graph.set(source, new Set());
+
+          this.inDegree.set(source, 0);
+
+        }
+
+        if (!this.graph.has(target)) {
+
+          this.graph.set(target, new Set());
+
+          this.inDegree.set(target, 0);
+
+        }
+
+        this.graph.get(source).add(target);
+
+        this.inDegree.set(target, this.inDegree.get(target) + 1);
+
+      });
+
+      this.queue = [...this.inDegree.keys()].filter(node => this.inDegree.get(node) === 0);
+
+      this.stepCount = 0;
+
+      this.logger = new Proxy(this, {
+
+        get(target, prop) {
+
+          if (prop === 'getNext') {
+
+            return function () {
+
+              const result = target[prop]();
+
+              console.log(`Step ${target.stepCount}: Remaining relations - ${target.inDegree.size}`);
+
+              return result;
+
+            };
+
+          }
+
+          return target[prop];
+
+        }
+
+      });
+
+    }
+
+    getNext() {
+
+      if (this.queue.length === 0) {
+
+        return null; // No more elements
+
+      }
+
+      const current = this.queue.shift();
+
+      this.stepCount++;
+
+      this.graph.get(current).forEach(neighbor => {
+
+        this.inDegree.set(neighbor, this.inDegree.get(neighbor) - 1);
+
+        if (this.inDegree.get(neighbor) === 0) {
+
+          this.queue.push(neighbor);
+
+        }
+
+      });
+
+      return current;
+
+    }
+
+    *generateTopologicalOrder() {
+
+      while (this.queue.length > 0) {
+
+        const current = this.getNext();
+
+        if (current === null) {
+
+          return;
+
+        }
+
+        yield current;
+
+      }
+
+    }
+
+  }
+
+  // Example usage:
+
+  const studentenLeben = new Vorrang([
+
+    ["schlafen", "studieren"],
+
+    ["essen", "studieren"],
+
+    ["studieren", "prüfen"]
+
+  ]);
+
+  document.write("<h1>Vorrang Sequence</h1>");
+
+  document.write("<ul>");
+
+  const iterator = studentenLeben.logger.generateTopologicalOrder();
+
+  console.assert(iterator.next().value === "schlafen");
+
+  document.write(`<li>${iterator.next().value}</li>`);
+
+  console.assert(iterator.next().value === "essen");
+
+  document.write(`<li>${iterator.next().value}</li>`);
+
+  console.assert(iterator.next().value === "studieren");
+
+  document.write(`<li>${iterator.next().value}</li>`);
+
+  console.assert(iterator.next().value === "prüfen");
+
+  document.write(`<li>${iterator.next().value}</li>`);
+
+  console.assert(iterator.next().done === true);
+
+  document.write("</ul>");
+
+</script>
+
+</body>
+
+</html>
