@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const stopwords = require('stopwords-de'); // Stoppwort-Liste aus Github laden
+const stopwords = require('https://github.com/stopwords-iso/stopwords-de'); // Stoppwort-Liste aus Github laden
 
 // Beispiel: Text aus der Datei laden
 
