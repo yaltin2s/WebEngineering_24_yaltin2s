@@ -49,3 +49,5 @@ function applyf(func){
         };
     };
 }
+
+export * from "";
