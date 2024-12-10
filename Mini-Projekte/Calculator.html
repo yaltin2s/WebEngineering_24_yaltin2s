@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/digital-7-mono');
+    /* Einfaches Styling für den Taschenrechner */
+    body {
+      font-family:  Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #e0dbd9;
+    }
+    .calculator {
+      width: 300px;
+      background: #545859;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .display {
+      font-family: 'Digital-7 Mono', sans-serif;
+      width: 95%;
+      height: 50px;
+      margin-bottom: 20px;
+      background: #c1d3c1;
+      border: none;
+      text-align: right;
+      padding: 10px;
+      font-size: 3em;
+      border-radius: 5px;
+      
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .buttons button {
+      height: 50px;
+      font-size: 1.2em;
+      border: none;
+      background: #e9eaea;
+      color: #000000;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .buttons button:hover {
+      background: rgba(234, 154, 154, 0.99);
+    }
+    .buttons .special {
+      background: #eb9a39;
+    }
+    .buttons .special:hover {
+      background-color: #fa6a00;
+    }
+  </style>
+</head>
+<body>
+<div class="calculator">
+  <input type="text" class="display" id="display" readonly>
+  <div class="buttons">
+    <button onclick="appendValue('7')">7</button>
+    <button onclick="appendValue('8')">8</button>
+    <button onclick="appendValue('9')">9</button>
+    <button onclick="performOperation('/')">÷</button>
+
+    <button onclick="appendValue('4')">4</button>
+    <button onclick="appendValue('5')">5</button>
+    <button onclick="appendValue('6')">6</button>
+    <button onclick="performOperation('*')">×</button>
+
+    <button onclick="appendValue('1')">1</button>
+    <button onclick="appendValue('2')">2</button>
+    <button onclick="appendValue('3')">3</button>
+    <button onclick="performOperation('-')">−</button>
+
+    <button onclick="clearDisplay()" class="special">C</button>
+    <button onclick="appendValue('0')">0</button>
+    <button onclick="performOperation('=')">=</button>
+    <button onclick="performOperation('+')">+</button>
+  </div>
+</div>
+
+<script>
+  let currentInput = '';
+  let previousInput = '';
+  let operator = null;
+
+  function appendValue(value) {
+    currentInput += value;
+    updateDisplay();
+  }
+
+  function performOperation(op) {
+    if (op === '=') {
+      if (operator && previousInput) {
+        currentInput = String(evaluate(previousInput, currentInput, operator));
+        operator = null;
+        previousInput = '';
+      }
+    } else {
+      if (currentInput) {
+        if (operator && previousInput) {
+          currentInput = String(evaluate(previousInput, currentInput, operator));
+        }
+        operator = op;
+        previousInput = currentInput;
+        currentInput = '';
+      }
+    }
+    updateDisplay();
+  }
+  function evaluate(a, b, operator) {
+    a = parseFloat(a);
+    b = parseFloat(b);
+    switch (operator) {
+      case '+': return a + b;
+      case '-': return a - b;
+      case '*': return a * b;
+      case '/': return b === 0 ? 'Error' : a / b;
+      default: return b;
+    }
+  }
+  function clearDisplay() {
+    currentInput = '';
+    previousInput = '';
+    operator = null;
+    updateDisplay();
+  }
+  function updateDisplay() {
+    document.getElementById('display').value = currentInput || previousInput || '0';
+  }
+</script>
+</body>
+</html>

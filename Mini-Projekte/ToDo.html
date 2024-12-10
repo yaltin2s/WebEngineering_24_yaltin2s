@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List App</title>
+    <style>
+        /* Basis-Styling für die To-Do-Liste */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .todo-container {
+            background: #fff;
+            width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .todo-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .add-btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .add-btn:hover {
+            background: #0056b3;
+        }
+        .todo-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .todo-item span {
+            font-size: 1em;
+            color: #333;
+        }
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background: #a71d2a;
+        }
+    </style>
+</head>
+<body>
+<div class="todo-container">
+    <h1>To-Do List</h1>
+    <input type="text" class="todo-input" placeholder="Add a new task..." id="todo-input">
+    <button class="add-btn" onclick="addTodo()">Add Task</button>
+    <ul class="todo-list" id="todo-list">
+        <!-- Tasks werden hier dynamisch eingefügt -->
+    </ul>
+</div>
+
+<script>
+    const todoInput = document.getElementById('todo-input');
+    const todoList = document.getElementById('todo-list');
+
+    function addTodo() {
+        const task = todoInput.value.trim();
+        if (task === '') {
+            alert('Please enter a task!');
+            return;
+        }
+
+        // Erstelle ein neues Listenelement
+        const listItem = document.createElement('li');
+        listItem.classList.add('todo-item');
+
+        // Textinhalt hinzufügen
+        const taskText = document.createElement('span');
+        taskText.textContent = task;
+        listItem.appendChild(taskText);
+
+        // Löschen-Button hinzufügen
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.onclick = () => listItem.remove();
+        listItem.appendChild(deleteBtn);
+
+        // Element zur Liste hinzufügen
+        todoList.appendChild(listItem);
+
+        // Eingabefeld leeren
+        todoInput.value = '';
+    }
+</script>
+</body>
+</html>
