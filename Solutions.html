@@ -60,7 +60,12 @@
 </header>
 <h1 style="text-align: center">Lösungen von Übungen</h1>
 <div class="buttons">
-      <button>Übung 1</button>
+    <nav id="uenbungen" class="uenbungen"></nav>
+</div>
+<div class="buttons-container">
+    <aside id="aufgaben" class="aufgabe"></aside>
+    <main id="loesung" class="loesung"></main>
+      <!--<button>Übung 1</button>
       <button>Übung 2</button>
       <button>Übung 3</button>
       <button>Übung 4</button>
@@ -69,11 +74,61 @@
       <button>Übung 7</button>
       <button>Übung 8</button>
       <button>Übung 9</button>
-      <button>Übung 10</button>
-   </div>
+      <button>Übung 10</button>-->
+</div>
 <a href="Uebung1/Inventors.html">link</a>
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const uebungenNav = document.getElementById('uenbungen');
+        const aufgabenAside = document.getElementById('aufgaben');
+        const loesungMain = document.getElementById('loesung');
 
+        // JSON-Datei laden
+        fetch('uebungen.json')
+            .then(response => response.json())
+            .then(data => {
+                // Hauptmenü (Übungen) aufbauen
+                for (const uebung in data) {
+                    const uebungButton = document.createElement('button');
+                    uebungButton.textContent = uebung;
+                    uebungButton.addEventListener('click', () => {
+                        // Aufgabenbereich aktualisieren
+                        aufgabenAside.innerHTML = '';
+                        loesungMain.innerHTML = '<h2>Bitte eine Aufgabe auswählen</h2>';
+
+                        for (const aufgabe in data[uebung]) {
+                            const aufgabeButton = document.createElement('button');
+                            aufgabeButton.textContent = aufgabe;
+                            aufgabeButton.addEventListener('click', () => {
+                                // Lösung anzeigen
+                                const contentData = data[uebung][aufgabe];
+                                loesungMain.innerHTML = `
+                                    <h2>${aufgabe}</h2>
+                                    <p><strong>Frage:</strong></p>
+                                    <p>${contentData.frage.replace(/\n/g, '<br>')}</p>
+                                    <p><strong>Lösung:</strong></p>
+                                    <pre>${contentData.lösung.replace(/\n/g, '<br>')}</pre>
+                                `;
+
+                                // Referenzen hinzufügen, falls vorhanden
+                                if (contentData.references) {
+                                    const referencesList = document.createElement('ul');
+                                    contentData.references.forEach(reference => {
+                                        const listItem = document.createElement('li');
+                                        listItem.innerHTML = `<a href="${reference}" target="_blank">${reference}</a>`;
+                                        referencesList.appendChild(listItem);
+                                    });
+                                    loesungMain.appendChild(referencesList);
+                                }
+                            });
+                            aufgabenAside.appendChild(aufgabeButton);
+                        }
+                    });
+                    uebungenNav.appendChild(uebungButton);
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    });
 </script>
 </body>
 </html>
