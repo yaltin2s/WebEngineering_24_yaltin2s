@@ -1,35 +1,90 @@
 {
   "Übung 1": {
-    "A1_1":{
+    "A1.1":{
+      "tittle": "World Wide Web",
       "frage": "1. Mit welchen fachlichen Argumenten wurde das WWW-Proposal von Tim Berners-Lee abgelehnt?\n2.Was sind die fachlichen Argumente, warum das WWW dennoch ein Erfolg wurde?\n3.Was wäre der Preis für die garantierte Verhinderung von \"broken links\"?",
       "lösung": "I. Kritik an TBLs WWW-Proposal:\n\n\n\n1. Bestehende Alternativen: Es gab bereits Dienste wie FTP und Gopher, sodass das World Wide Web überflüssig erschien.\n\n2. Technische Aspekte: Ein Weltweites Hypertextsystem kam vielen Befürwortern zu umständlich vor.\n\n3. Inkompatibilität: Viele fürchteten, daß das WWW bestehende Dienste stören werde.\n\n4. Unhandlichkeit: Das ursprüngliche System wurde von manchen als erheblich zu komplex für Dummies gemieden.\n\n5. Wirtschaftliche Erwägungen: Es fehlte eine klare Perspektive, wie der Autor Gewinne machen will.\n\nII. Das WWW zum Erfolg unterstützenden Argumente:\n\n\n\n1. Einfacher Zugang: Hypertext erlaubt intuitive Navigation.\n\n2. Offener Standard: Die Offenheit des Systems förderte die Verbreitung.\n\n3. HTML und HTTP: Diese Technologien gaben dem Web Flexibilität und Skalierbarkeit.\n\n4. Grafische Browser: Browser wie Mosaic machten das Web benutzbarer.\n\n5. Innovationen: Durch das WWW entstanden viele neue Dienste wie E-Commerce und the Web as a Social Network.\n\nIII. Preiskalkulation hinsichtlich \"Broken Links\":\n\n\uFEFF\uFEFF \n\n1. Zentrale Kontrolle: Inhalte müssten zentral überwacht werden, was dem freien Umgang des WWW widerstreben würde.\n\n2. Zusätzliche Speicherbelastungen: Alle Decks müssen ständig gehalten werden, was riesige Kosten erzeugt.\n\n3. Permanente Neu- und Bearbeitung: Redirects und Archive müssen fortlaufend aktualisiert werden.\n\n4. Rechtsfragen: Urheberrecht und Willen zur Permanentisierung wären problematisch. "
     },
-    "A1_2": {
+    "A1.2": {
+      "tittle": "HTTP",
       "frage": "1.Sie bekommen im Browser den HTTP Status Code 200. Was bedeutet das?\n2.Sie bekommen im Browser den HTTP Status Code 301. Was hat das zu bedeuten?\n3.Sie bekommen im Browser den HTTP Status Code 400. Was hat das zu bedeuten? Was können Sie dagegen tun?\n4.Sie bekommen im Browser den HTTP Status Code 403. Was hat das zu bedeuten? Was können Sie dagegen tun?\n5.In einer Webanwendung benötigen Sie eine OPTIONS-Anfrage, die die Optionen des Servers vor dem eigentlichen Zugriff erfragen soll. Aus Performancegründen soll die Abfrage aber cacheable sein. Wie könnten Sie dafür eine Lösung angehen?",
-      "lösung": "1.Der HTTP-Statuscode 200 bedeutet \"OK\". Dieser Code signalisiert, dass die Anfrage erfolgreich war und der Server die angeforderten Daten ohne Probleme zurückgegeben hat.s\n\n2. Der HTTP-Statuscode 301 bedeutet \"Moved Permanently\" (dauerhaft verschoben).\n\n3. Der HTTP-Statuscode 400 bedeutet \"Bad Request\" (fehlerhafte Anfrage).\n\n\tBedeutung: Dieser Code signalisiert, dass der Server die Anfrage nicht verarbeiten konnte, weil sie ungültig oder fehlerhaft war.\n\n\tGegenmaßnahmen:\n\n\t\t1.Überprüfen Siedie URL:\n\n\t\t2.Aktualisieren Sie die Seite.\n\n\t\t3.Cache und Cookies löschen\n\n\t\t4.Prüfen Sie die Parameter\n\n\t\t5.Kontaktieren Sie den Serveradministrator.\n\n4. Der HTTP-Statuscode 403 bedeutet \"Forbidden\" (verboten).\n\n\tBedeutung: Dieser Code signalisiert, dass der Server die Anfrage versteht, sie jedoch verweigert, weil der Client\n\n\t\t\t\t\t\tkeine Berechtigung hat, auf die angeforderte Ressource zuzugreifen.\n\n\n\n\tGegenMaßnahmen:\n\na. Berechtigungen prüfen.\nb. Kontakt mit dem Website-Administrator aufnehmen.\nc. Überprüfung der URL.\nd. Browser-Cache und Cookies löschen.\n5. OPTIONS *|<request-target>[\"?\"<query>] HTTP/1.1\n\n\tCache-Control: public, max-age=3600"
+      "lösung": "1.Der HTTP-Statuscode 200 bedeutet \"OK\". Dieser Code signalisiert, dass die Anfrage erfolgreich war und der Server die angeforderten Daten ohne Probleme zurückgegeben hat.s\n\n2. Der HTTP-Statuscode 301 bedeutet \"Moved Permanently\" (dauerhaft verschoben).\n\n3. Der HTTP-Statuscode 400 bedeutet \"Bad Request\" (fehlerhafte Anfrage).\n\n\tBedeutung: Dieser Code signalisiert, dass der Server die Anfrage nicht verarbeiten konnte, weil sie ungültig oder fehlerhaft war.\n\n\tGegenmaßnahmen:\n\n\t\t1.Überprüfen Siedie URL:\n\n\t\t2.Aktualisieren Sie die Seite.\n\n\t\t3.Cache und Cookies löschen\n\n\t\t4.Prüfen Sie die Parameter\n\n\t\t5.Kontaktieren Sie den Serveradministrator.\n\n4. Der HTTP-Statuscode 403 bedeutet \"Forbidden\" (verboten).\n\n\tBedeutung: Dieser Code signalisiert, dass der Server die Anfrage versteht, sie jedoch verweigert, weil der Client\n\n\t\t\t\t\t\tkeine Berechtigung hat, auf die angeforderte Ressource zuzugreifen.\n\n\n\n\tGegenMaßnahmen:\n\na. Berechtigungen prüfen.\nb. Kontakt mit dem Website-Administrator aufnehmen.\nc. Überprüfung der URL.\nd. Browser-Cache und Cookies löschen.\n5. OPTIONS *|&lt;request-target&gt;[\"?\"&lt;query&gt;] HTTP/1.1\n\n\tCache-Control: public, max-age=3600"
     },
-    "A1_3":{
+    "A1.3":{
+      "tittle": "Quiz zu HTML",
       "frage": "1.Was ist HTML?\n2. Wofür steht HTML?\n3. Wofür wird HTML eingesetzt?\n4. Wer hat HTML erfunden?\n5. Zu welchem ursprünglichen Zweck wurde HTML erfunden?\n6. Wer arbeitet alles an der Weiterentwicklung von HTML?\n",
       "lösung": "1.eine Auszeichnungssprache.\n2. Hypertext Markup Language.\n3. für die Strukturierung digitaler Dokumente.\n4. Tim Berners-Lee.\n5. für den Austausch wissenschaftlicher Publikationen.\n6. die Web Hypertext Application Technology Working Group (WHATWG)\ndas World Wide Web Consortium (W3C)"
     },
-    "A1_4": {
+    "A1.4": {
+      "tittle": "Quiz zu HTML-Tags",
       "frage": "1. Was ist ein HTML-Tag?\n2. Wofür nutzt man einen HTML-Tag?\n3. Woraus besteht ein HTML-Tag und wie setzt man ihn ein?\n4. Was ist ein HTML-Attribut?\n5. Wofür nutzt man ein HTML-Attribut?\n6. Wie schreibt man einen Kommentar in HTML?",
-      "lösung":"1. ein Auszeichnungselement\n2. Zur Einbettung weiterer Inhalte, die über Text hinausgehen\nZur Strukturierung von Webseiteninhalten\n3. <h2>Überschrift</h2>\nHallo Welt!<br>Willkommen.\n\n<p>Paragraph</p>\n4. eine Eigenschaft\n5. zur Beschreibung zusätzlicher Eigenschaften von HTML-Tags\n6. <!-- Kommentar -->"
+      "lösung":"1. ein Auszeichnungselement\n2. Zur Einbettung weiterer Inhalte, die über Text hinausgehen\nZur Strukturierung von Webseiteninhalten\n3. &lt;h2&gt;Überschrift&lt;/h2&gt;\n   Hallo Welt!&lt;br&gtWillkommen.\n   &lt;p&gtParagraph&lt;/p&gt\n4. eine Eigenschaft\n5. zur Beschreibung zusätzlicher Eigenschaften von HTML-Tags\n6. &lt;!-- Kommentar --&gt"
     },
-    "A1_5": {
+    "A1.5": {
+      "tittle": "Lückentext zu HTML",
       "frage": "Ergänzen Sie die fehlenden HTML-Tags in dem folgenden HTML-Quelltext:",
-      "lösung": "\n<!DOCTYPE html>\n\n<html>\n\n  \n<head>\n\n    \n<title>\nTitel der Webseite\n</title>\n\n  \n</head>\n\n  \n<body>\n\n    \n<h1>\nAnwendung von HTML-Tags\n</h1>\n\n    \n<h2>\nMotivation\n</h2>\n\n    \n<p>\n\nDieser Lückentext unterstützt Sie dabei selbst einzuschätzen, ob Sie in der Lage sind das HTML-Grundgerüst und die HTML-Tags zum Markieren von Überschriften, Paragraphen und HTML-Kommentaren einzusetzen.\n    \n</p>\n\n<!--\n\n    \n<h2>\nAuskommentierung von HTML-Code\n</h2>\n\n    \n<p>\nDieser Abschnitt wurde auskommentiert.\n</p>\n\n-->\n\n  \n</body>\n\n</html>"
+      "lösung": "\n&lt;&lt;!DOCTYPE html&gt;\n\n&lt;html&gt;  \n&lt;head&gt;    \n&lt;title&gt;Titel der Webseite&lt;/title&gt;  \n&lt;/head&gt;  \n&lt;body&gt;    \n&lt;h1&gt;\nAnwendung von HTML-Tags\n&lt;/h1&gt;\n\n    \n&lt;h2&gt;\nMotivation\n&lt;/h2&gt;    \n&lt;p&gt;Dieser Lückentext unterstützt Sie dabei selbst einzuschätzen, ob Sie in der Lage sind das HTML-Grundgerüst und die HTML-Tags zum Markieren von Überschriften,\n Paragraphen und HTML-Kommentaren einzusetzen.    \n&lt;/p&gt;\n&lt;!--    \n&lt;h2&gt;\nAuskommentierung von HTML-Code\n&lt;/h2&gt;    \n&lt;p&gt;\nDieser Abschnitt wurde auskommentiert.\n&lt;/p&gt;--&gt;  \n&lt;/body&gt;\n\n&lt;/html&gt;&gt"
     },
-    "A1_6": {
+    "A1.6": {
+      "tittle": "HTML-Literatur lesen und Fragen beantworten",
       "frage": "Arbeiten Sie ein HTML-Tutorial durch (W3Schools oder selfhtml) und beantworten Sie dazu folgende Fragen:\n1. Was ist HTML?\n2.Wie kann man eine geschachtelte geordnete Liste der Tiefe 3 erzeugen?\n3. Wie ist eine HTML-Tabelle aufgebaut?\n4. Welche Konventionen sollte man bei Pfaden und Dateinamen beachten?\n5. Wie baut man in HTML ein Menü?\n6. Welche Attribute sollte man bei Bildern wie verwenden?",
-      "lösung": "1.HTML stands for Hyper Text Markup Language\n\nHTML is the standard markup language for creating Web pages\nHTML describes the structure of a Web page\nHTML consists of a series of elements\nHTML elements tell the browser how to display the content\nHTML elements label pieces of content such as \"this is a heading\", \"this is a paragraph\", \"this is a link\", etc.\n2.************************************************************************\n\n<ol>\n\n    <li>Erstes Element\n\n        <ol>\n\n            <li>Unterelement 1\n\n                <ol>\n\n                    <li>Tiefe 3 Element 1</li>\n\n                    <li>Tiefe 3 Element 2</li>\n\n                </ol>\n\n            </li>\n\n            <li>Unterelement 2\n\n                <ol>\n\n                    <li>Tiefe 3 Element 3</li>\n\n                    <li>Tiefe 3 Element 4</li>\n\n                </ol>\n\n            </li>\n\n        </ol>\n\n    </li>\n\n    <li>Zweites Element\n\n        <ol>\n\n            <li>Unterelement 3\n\n                <ol>\n\n                    <li>Tiefe 3 Element 5</li>\n\n                </ol>\n\n            </li>\n\n        </ol>\n\n    </li>\n\n</ol>\n\n************************************************************************\n\n3. <table>\n\n <thead>\n\n  <tr>\n\n   <th>Überschrift 1</th>\n\n   <th>Überschrift 2</th>\n\n  </tr>\n\n </thead>\n\n <tbody>\n\n  <tr>\n\n   <td>Zelle 1</td>\n\n   <td>Zelle 2</td>\n\n  </tr>\n\n  <tr>\n\n   <td>Zelle 3</td>\n\n   <td>Zelle 4</td>\n\n  </tr>\n\n </tbody>\n\n</table>\n\n\n\n************************************************************************\n\n4. \n\nVerwende nur Kleinbuchstaben.\nVerwende anstelle von Leerzeichen Bindestriche oder Unterstriche.\nWähle aussagekräftige, leicht verständliche Namen, die den Inhalt oder Zweck beschreiben.\nVermeide Sonderzeichen.\nHalte eine einheitliche Struktur für alle Pfade und Dateinamen ein.\n************************************************************************\n\n5.\n\n\t<nav>\n\n <ul>\n\n  <li><a href=\"#home\">Home</a></li>\n\n  <li><a href=\"#about\">About</a></li>\n\n  <li><a href=\"#services\">Services</a></li>\n\n  <li><a href=\"#contact\">Contact</a></li>\n\n </ul>\n\n</nav>\n\n************************************************************************\n\n6.\n\n1. src: source: <img src:\"img.jpg\">\n2. alt: alternative name: <img src=\"img.jpg\", alt= \"schönes Bild\">\n3. width und height: Bild maßen in pixel: <img src=\"img.jpg\", alt= \"schönes Bild\", width=\"300\", height=\"200\">\n4. loading=\"lazy\": Verzögert das Laden des Bildes, bis es im sichtbaren Bereich des Bildschirms ist. Verbessert die Ladegeschwindigkeit der Seite  <img  src=\"bild.jpg\" ,alt=\"Bild\" ,loading=\"lazy\">\n5. title: Zeigt einen Tooltip an, wenn der Benutzer mit der Maus über das Bild fährt: <img src=\"bild.jpg\", alt=\"Bild\", title=\"Tooltip Text\">"
+      "lösung": "1.HTML stands for Hyper Text Markup Language\nHTML is the standard markup language for creating Web pages\nHTML describes the structure of a Web page\nHTML consists of a series of elements\nHTML elements tell the browser how to display the content\nHTML elements label pieces of content such as \"this is a heading\", \"this is a paragraph\", \"this is a link\", etc.\n2.&lt;ol&gt;    &lt;li&gt;Erstes Element\n        &lt;ol&gt;\n           &lt;li&gt;Unterelement 1\n                &lt;ol&gt;\n                    &lt;li&gt;Tiefe 3 Element 1&lt;/li&gt;\n                    &lt;li&gt;Tiefe 3 Element 2&lt;/li&gt;\n                &lt;/ol&gt;\n            &lt;/li&gt;\n            &lt;li&gt;Unterelement 2\n                &lt;ol&gt;\n                    &lt;li&gt;Tiefe 3 Element 3&lt;/li&gt;\n                    &lt;li&gt;Tiefe 3 Element 4&lt;/li&gt;\n                &lt;/ol&gt;\n            &lt;/li&gt;\n        &lt;/ol&gt;\n    &lt;/li&gt;\n    &lt;li&gt;Zweites Element\n        &lt;ol&gt;\n            &lt;li&gt;Unterelement 3\n                &lt;ol&gt;\n                    &lt;li&gt;Tiefe 3 Element 5&lt;/li&gt;\n                &lt;/ol&gt;\n            &lt;/li&gt;\n        &lt;/ol&gt;\n    &lt;/li&gt;\n&lt;/ol&gt;\n************************************************************************\n3. &lt;table&gt;\n &lt;thead&gt;\n  &lt;tr&gt;\n   &lt;th&gt;Überschrift 1&lt;/th&gt;\n   &lt;th&gt;Überschrift 2&lt;/th&gt;\n  &lt;/tr&gt;\n &lt;/thead&gt;\n &lt;tbody&gt;\n\n  &lt;tr&gt;\n\n   &lt;td&gt;Zelle 1&lt;/td&gt;\n   &lt;td&gt;Zelle 2&lt;/td&gt;\n  &lt;/tr&gt;\n  &lt;tr&gt;\n\n   &lt;td&gt;Zelle 3&lt;/td&gt;\n   &lt;td&gt;Zelle 4&lt;/td&gt;\n  &lt;/tr&gt;\n &lt;/tbody&gt;\n\n&lt;/table&gt;\n************************************************************************\n4. Verwende nur Kleinbuchstaben.\nVerwende anstelle von Leerzeichen Bindestriche oder Unterstriche.\nWähle aussagekräftige, leicht verständliche Namen, die den Inhalt oder Zweck beschreiben.\nVermeide Sonderzeichen.\nHalte eine einheitliche Struktur für alle Pfade und Dateinamen ein.\n************************************************************************\n5.\t&lt;nav&gt;\n &lt;ul&gt;\n  &lt;li&gt;&lt;a href=\"#home\"&gt;Home&lt;/a&gt;&lt;/li&gt;\n  &lt;li&gt;&lt;a href=\"#about\"&gt;About&lt;/a&gt;&lt;/li&gt;\n  &lt;li&gt;&lt;a href=\"#services\"&gt;Services&lt;/a&gt;&lt;/li&gt;\n  &lt;li&gt;&lt;a href=\"#contact\"&gt;Contact&lt;/a&gt;&lt;/li&gt;\n &lt;/ul&gt;\n&lt;/nav&gt;\n************************************************************************\n6. 1. src: source: &lt;img src:\"img.jpg\"&gt;\n2. alt: alternative name: &lt;img src=\"img.jpg\", alt= \"schönes Bild\"&gt;\n3. width und height: Bild maßen in pixel: &lt;img src=\"img.jpg\", alt= \"schönes Bild\", width=\"300\", height=\"200\"&gt;\n4. loading=\"lazy\": Verzögert das Laden des Bildes, bis es im sichtbaren Bereich des Bildschirms ist. Verbessert die Ladegeschwindigkeit der Seite  &lt;img  src=\"bild.jpg\" ,alt=\"Bild\" ,loading=\"lazy\"&gt;\n5. title: Zeigt einen Tooltip an, wenn der Benutzer mit der Maus über das Bild fährt: &lt;img src=\"bild.jpg\", alt=\"Bild\", title=\"Tooltip Text\"&gt;"
     },
-    "A1_7":{
+    "A1.7":{
+      "tittle": "HTML-Wireframe",
+      "photo": ["Uebung1/wireframe01 (1).jpg"],
       "frage": "Gegeben ist folgendes HTML-Wireframe:\nMit welchem HTML-Code (ohne CSS, nur mit HTML-Tags) kann man dieses Wireframe exakt nachbilden?",
       "lösung": "Lösung durch den Link abrufbar",
       "references": [
         "Uebung1/Inventors.html"
       ]
     }
+  },
+  "Übung 2":{
+    "A2.2":{},
+    "A2.3": {},
+    "A2.4": {}
+  },
+  "Übung 3":{
+    "A3.1": {},
+    "A3.2": {},
+    "A3.3": {}
+  },
+  "Übung 4":{
+    "A4.1": {},
+    "A4.2": {},
+    "A4.3": {},
+    "A4.4": {}
+  },
+  "Übung 5":{
+    "A5.1": {},
+    "A5.2":{},
+    "A5.3": {}
+  },
+  "Übung 6":{
+    "A6.1": {},
+    "A6.2": {},
+    "A6.3": {},
+    "A6.4": {},
+    "A6.5": {}
+  },
+  "Übung 7":{
+    "A7.1": {},
+    "A7.2": {}
+  },
+  "Übung 8":{
+    "A8.1": {},
+    "A8.2": {},
+    "A8.3": {}
+  },
+  "Übung 9":{
+    "A9.1": {},
+    "A9.2": {},
+    "A9.3": {}
+  },
+  "Übung 10":{
+    "A10.1": {},
+    "A10.2": {},
+    "A10.3": {}
   }
 }

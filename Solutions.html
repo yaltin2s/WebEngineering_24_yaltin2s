@@ -35,7 +35,6 @@
         border-radius: 15px;
         padding: 20px;
         margin: 5px;
-
     }
     button:hover{
         color: #16425B;
@@ -45,19 +44,44 @@
       display: flex;
       flex-direction: row;
     }
+    p ,pre{
+        text-align: left;
+        background-color: #16425B;
+        padding: 10px;
+        color: #e9e9e5;
+    }
+    aside{
+        padding: 10px;
+        color: #e9e9e5;
+        display:flex;
+        flex-direction: column;
+    }
+    footer {
+        display: flex;
+        background-color: #16425B;
+        color:snow;
+        text-align: center;
+        padding: 10px 0;
+        justify-content: center;
+    }
+    h2,h1{
+        color: #16425B;
+    }
   </style>
 </head>
 <body>
 <header>
-    <h1>Solution Navigator von Yousef</h1>
+    <h1 style="color: snow">Solution Navigator von Yousef</h1>
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="Solutions.html">Solutions</a></li>
+            <li> <a href="miniProjekte.html">Have Fun !!</a></li>
             <li><a href="creator.html">About me</a></li>
         </ul>
     </nav>
 </header>
+<main>
 <h1 style="text-align: center">Lösungen von Übungen</h1>
 <div class="buttons">
     <nav id="uenbungen" class="uenbungen"></nav>
@@ -65,18 +89,7 @@
 <div class="buttons-container">
     <aside id="aufgaben" class="aufgabe"></aside>
     <main id="loesung" class="loesung"></main>
-      <!--<button>Übung 1</button>
-      <button>Übung 2</button>
-      <button>Übung 3</button>
-      <button>Übung 4</button>
-      <button>Übung 5</button>
-      <button>Übung 6</button>
-      <button>Übung 7</button>
-      <button>Übung 8</button>
-      <button>Übung 9</button>
-      <button>Übung 10</button>-->
 </div>
-<a href="Uebung1/Inventors.html">link</a>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const uebungenNav = document.getElementById('uenbungen');
@@ -99,23 +112,23 @@
                         for (const aufgabe in data[uebung]) {
                             const aufgabeButton = document.createElement('button');
                             aufgabeButton.textContent = aufgabe;
+
                             aufgabeButton.addEventListener('click', () => {
                                 // Lösung anzeigen
                                 const contentData = data[uebung][aufgabe];
                                 loesungMain.innerHTML = `
-                                    <h2>${aufgabe}</h2>
-                                    <p><strong>Frage:</strong></p>
+                                    <h2>${contentData.tittle}</h2>
+                                    <p style="font-size: large"><strong>Frage:</strong></p>
                                     <p>${contentData.frage.replace(/\n/g, '<br>')}</p>
-                                    <p><strong>Lösung:</strong></p>
+                                    <p style="font-size: large"><strong>Lösung:</strong></p>
                                     <pre>${contentData.lösung.replace(/\n/g, '<br>')}</pre>
                                 `;
-
                                 // Referenzen hinzufügen, falls vorhanden
                                 if (contentData.references) {
-                                    const referencesList = document.createElement('ul');
+                                    const referencesList = document.createElement('dl');
                                     contentData.references.forEach(reference => {
-                                        const listItem = document.createElement('li');
-                                        listItem.innerHTML = `<a href="${reference}" target="_blank">${reference}</a>`;
+                                        const listItem = document.createElement('dt');
+                                        listItem.innerHTML = `<a href="${reference}" target="_blank">Lösung von ${aufgabe}</a>`;
                                         referencesList.appendChild(listItem);
                                     });
                                     loesungMain.appendChild(referencesList);
@@ -130,5 +143,9 @@
             .catch(error => console.error('Error fetching data:', error));
     });
 </script>
+</main>
+<footer>
+    <p>&copy; 2024/2025 Solution Navigator</p>
+</footer>
 </body>
 </html>
