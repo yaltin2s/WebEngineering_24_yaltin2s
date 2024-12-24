@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List App</title>
     <style>
-        /* Basis-Styling für die To-Do-Liste */
         body {
             font-family: Arial, sans-serif;
             background-color: #f3f3f3;
@@ -27,15 +26,15 @@
             margin-bottom: 20px;
             color: #333;
         }
-        .todo-input {
+        .todo-input, .date-input, .time-input {
             width: 100%;
             padding: 10px;
             font-size: 1em;
             border: 1px solid #ccc;
             border-radius: 5px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
-        .add-btn {
+        .add-btn, .export-btn {
             width: 100%;
             padding: 10px;
             font-size: 1em;
@@ -44,8 +43,9 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 10px;
         }
-        .add-btn:hover {
+        .add-btn:hover, .export-btn:hover {
             background: #0056b3;
         }
         .todo-list {
@@ -83,45 +83,68 @@
 <body>
 <div class="todo-container">
     <h1>To-Do List</h1>
-    <label for="todo-input"></label><input type="text" class="todo-input" placeholder="Add a new task..." id="todo-input">
+    <input type="text" class="todo-input" placeholder="Add a new task..." id="todo-input" onkeypress="handleKeyPress(event)">
+    <input type="date" class="date-input" id="date-input">
+    <input type="time" class="time-input" id="time-input">
     <button class="add-btn" onclick="addTodo()">Add Task</button>
-    <ul class="todo-list" id="todo-list">
-        <!-- Tasks werden hier dynamisch eingefügt -->
-    </ul>
+    <ul class="todo-list" id="todo-list"></ul>
+    <button class="export-btn" onclick="exportList()">Export List</button>
 </div>
 
 <script>
     const todoInput = document.getElementById('todo-input');
+    const dateInput = document.getElementById('date-input');
+    const timeInput = document.getElementById('time-input');
     const todoList = document.getElementById('todo-list');
 
     function addTodo() {
         const task = todoInput.value.trim();
-        if (task === '') {
-            alert('Please enter a task!');
+        const date = dateInput.value;
+        const time = timeInput.value;
+
+        if (task === '' || date === '' || time === '') {
+            alert('Please enter a task, date, and time!');
             return;
         }
 
-        // Erstelle ein neues Listenelement
         const listItem = document.createElement('li');
         listItem.classList.add('todo-item');
 
-        // Textinhalt hinzufügen
         const taskText = document.createElement('span');
-        taskText.textContent = task;
+        taskText.textContent = `${task} - ${date} ${time}`;
         listItem.appendChild(taskText);
 
-        // Löschen-Button hinzufügen
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
         deleteBtn.classList.add('delete-btn');
         deleteBtn.onclick = () => listItem.remove();
         listItem.appendChild(deleteBtn);
 
-        // Element zur Liste hinzufügen
         todoList.appendChild(listItem);
-
-        // Eingabefeld leeren
         todoInput.value = '';
+        dateInput.value = '';
+        timeInput.value = '';
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            addTodo();
+        }
+    }
+
+    function exportList() {
+        let tasks = '';
+        document.querySelectorAll('.todo-item span').forEach(item => {
+            tasks += item.textContent + '\n';
+        });
+
+        const blob = new Blob([tasks], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'todo-list.txt';
+        a.click();
+        URL.revokeObjectURL(url);
     }
 </script>
 </body>

@@ -92,3 +92,12 @@ button:hover{
     color: #16425B;
     background-color: #e9e9e5;
 }
+#miniprojects{
+    margin-top: 50px;
+    padding: 50px;
+    display: grid;
+    grid-template: "a a a";
+}
+#miniprojects button{
+    width: auto;
+}
