@@ -63,8 +63,8 @@ footer {
 }
 .details{
     display: flex;
-    grid-template-columns:10% 90%;
-    flex-direction: row-reverse;
+    justify-content: center;
+    flex-direction: row;
 }
 dl{
     padding: 10px;
