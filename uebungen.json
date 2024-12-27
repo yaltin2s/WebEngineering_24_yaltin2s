@@ -23,7 +23,7 @@
     "A1.5": {
       "tittle": "Lückentext zu HTML",
       "frage": "Ergänzen Sie die fehlenden HTML-Tags in dem folgenden HTML-Quelltext:",
-      "lösung": "\n&lt;&lt;!DOCTYPE html&gt;\n\n&lt;html&gt;  \n&lt;head&gt;    \n&lt;title&gt;Titel der Webseite&lt;/title&gt;  \n&lt;/head&gt;  \n&lt;body&gt;    \n&lt;h1&gt;\nAnwendung von HTML-Tags\n&lt;/h1&gt;\n\n    \n&lt;h2&gt;\nMotivation\n&lt;/h2&gt;    \n&lt;p&gt;Dieser Lückentext unterstützt Sie dabei selbst einzuschätzen, ob Sie in der Lage sind das HTML-Grundgerüst und die HTML-Tags zum Markieren von Überschriften,\n Paragraphen und HTML-Kommentaren einzusetzen.    \n&lt;/p&gt;\n&lt;!--    \n&lt;h2&gt;\nAuskommentierung von HTML-Code\n&lt;/h2&gt;    \n&lt;p&gt;\nDieser Abschnitt wurde auskommentiert.\n&lt;/p&gt;--&gt;  \n&lt;/body&gt;\n\n&lt;/html&gt;&gt"
+      "lösung": "&lt;!DOCTYPE html&gt;\n&lt;html&gt;  \n&lt;head&gt;    \n&lt;title&gt;Titel der Webseite&lt;/title&gt;  \n&lt;/head&gt;  \n&lt;body&gt;    \n&lt;h1&gt;\nAnwendung von HTML-Tags\n&lt;/h1&gt;\n    \n&lt;h2&gt;\nMotivation\n&lt;/h2&gt;    \n&lt;p&gt;Dieser Lückentext unterstützt Sie dabei selbst einzuschätzen, ob Sie in der Lage sind das HTML-Grundgerüst und die HTML-Tags zum Markieren von Überschriften,\n Paragraphen und HTML-Kommentaren einzusetzen.    \n&lt;/p&gt;\n&lt;!--    \n&lt;h2&gt;\nAuskommentierung von HTML-Code\n&lt;/h2&gt;    \n&lt;p&gt;\nDieser Abschnitt wurde auskommentiert.\n&lt;/p&gt;--&gt;  \n&lt;/body&gt;\n&lt;/html&gt;"
     },
     "A1.6": {
       "tittle": "HTML-Literatur lesen und Fragen beantworten",
@@ -33,7 +33,7 @@
     "A1.7":{
       "tittle": "HTML-Wireframe",
       "photo": ["Uebung1/wireframe01 (1).jpg"],
-      "frage": "Gegeben ist folgendes HTML-Wireframe:\nMit welchem HTML-Code (ohne CSS, nur mit HTML-Tags) kann man dieses Wireframe exakt nachbilden?",
+      "frage": "Gegeben ist folgendes HTML-Wireframe:\n<img src='Uebung1/wireframe01 (1).jpg' width=300 height=350>\nMit welchem HTML-Code (ohne CSS, nur mit HTML-Tags) kann man dieses Wireframe exakt nachbilden?",
       "lösung": "Lösung durch den Link abrufbar",
       "references": [
         "Uebung1/Inventors.html"
@@ -41,17 +41,55 @@
     }
   },
   "exercise 2":{
-    "A2.2":{},
-    "A2.3": {},
-    "A2.4": {}
+    "A2.1": {
+      "tittle": "Zuordnung der Homepage",
+      "frage": "Geben Sie hier die Repository-URL Ihrer Homepage an, damit ich sie Ihrer Person eindeutig zuordnen kann:\nEs muss ein privates Repository sein, auf das nur Sie und ich Zugriff haben. Stellen Sie also sicher, dass ich als Collaborator eingetragen bin und die Einladung bestätigt habe. Mein GitHub-Benutzername ist <code>akless</code>.\nDiese Aufgabe ist Pflicht, damit Sie später an der Prüfung teilnehmen können.",
+      "lösung": "<a href='https://github.com/yaltin2s/WebEngineering_24_yaltin2s' target='_blank'>yaltin2s/WebEngineering_24_yaltin2s</a>"
+    },
+    "A2.2":{
+      "tittle": "CSS-Selektoren und CSS-Farben",
+      "frage": "Berechnen Sie die Spezifität folgender CSS Selektoren:<ol><li>div div div:focus .inner</li><li>h1 + div.main</li><li>div a:link[href*='h-brs']</li><li>nav > a:hover::before</li><li>ul#primary-nav li.active</li></ol>\n\nRechnen Sie folgende RGB-Werte mit den DevTools des Webbrowsers in HSL-Werte um<ol><li>#ffffff</li><li>#000</li><li>#ab0978</li><li>rgb(127,255,33)</li><li>rgba(255,127,33,0.8)</li></ol>",
+      "lösung": "<ol><li>3 (elements) + 10 (pseudo-class) + 10 (class) = 23</li><li>1 (h1) + 1 (div) + 10 (class) = 12</li><li>1 (div) + 1 (a) + 10 () + 10 (attribute) = 22</li><li>1 (nav) + 1 (a) + 10 () + 1 (pseudo-element) = 13</li><li>1 (ul) + 100 (ID) + 1 (li) + 10 (class) = 112</li></ol>\n<ol><li>(0°,0%,0%)</li><li>(0°,0%,0%)</li><li>(316°,88%,35.3%)</li><li>(96°,77%,56.4%)</li><li>(24°,77%,56.4%)</li></ol>"
+    },
+    "A2.3": {
+      "tittle": "CSS-Positionierung",
+      "frage": "Bauen Sie das dynamische Verhalten in den folgenden beiden Videos exakt nach:\n\n<a href='https://www.youtube.com/watch?v=PE3POxjDspo' target='_blank'>Video 1</a>\n<a href='https://www.youtube.com/watch?v=HVmnv3k4__E' target='_blank'>Video 2</a>\nArbeiten Sie in beiden Fällen nur mit HTML und CSS, ohne JavaScript.\n\nDas Bild aus dem zweiten Video finden Sie <a href='https://kaul.inf.h-brs.de/ccm/we/ws24/resources/assets/h-brs.jpg' target='_blank'>hier.</a>",
+      "lösung": "Sticky Überschrift:\nBild:",
+      "references": ["Uebung2/HeaderAufgabe.html","Uebung2/Uebung2_2.html"]
+    },
+    "A2.4": {
+      "tittle": "Wireframe mit HTML und CSS",
+      "frage": "Gegeben ist folgendes HTML-Wireframe:\n<img src='Uebung2/img.png' width=350 height=350>\nMit welchem HTML- und CSS-Code kann man dieses Wireframe exakt nachbilden? Schreiben Sie Ihren CSS-Code direkt in die HTML-Datei.\nDie grünliche Farbe ist <cod> #a9d7d1</code> und die Hintergrundfarbe vom HTML-Formular ist <code>snow</code>. Die Schriftart ist eine <a href='https://fonts.google.com/' target='_blank'>Google Font:</a> <code>Roboto</code>.",
+      "lösung": "",
+      "references": ["Uebung2/SurveyForm.html"]
+    }
   },
   "exercise 3":{
-    "A3.1": {},
-    "A3.2": {},
-    "A3.3": {}
+    "A3.1": {
+      "tittle": "Responsiv mit Flexbox und Desktop-First",
+      "frage": "Spielen Sie zunächst das <a href='https://flexboxfroggy.com/#de' target='_blank'>Flexbox Froggy-Spiel</a>, um Flexbox zu lernen.\n\nImplementieren Sie dann ausschließlich mit HTML, CSS und Flexbox das folgende Responsive Webdesign nach der Desktop-First-Strategie:\n<img src='Uebung3/holy-grail1.png' width= 300 height= 350>",
+      "lösung": "Lösung ist durch Link abrufbar",
+      "references": ["Uebung3/3_1.html"]
+    },
+    "A3.2": {
+      "tittle": "Responsiv mit Grid und Mobile-First",
+      "frage": "Spielen Sie zunächst das <a href='https://cssgridgarden.com/#de' target= '_blank'>Grid Garden</a>-Spiel, um Grid zu lernen.\n\nImplementieren Sie dann das gleiche Responsive Webdesign wie zuvor in Aufgabe 3.1, allerdings diesmal mit Grid und der Mobile-First-Strategie. Vermeiden Sie außerdem das Erscheinen von horizontalen Scrollbars so weit wie möglich.",
+      "lösung": "Lösung ist durch Link abrufbar",
+      "references": ["Uebung3/3_2.html"]
+    },
+    "A3.3": {
+      "tittle": "Wireframe responsive mit Grid",
+      "frage": "Implementieren Sie folgende Landing-Page responsiv mit Grid:\n<img src='Uebung3/landing.png' width= 400 height=300>\nVermeiden Sie auch hier das Erscheinen von horizontalen Scrollbars so weit wie möglich. Für das Bild auf der Landing-Page verwenden Sie bitte<a href='Uebung3/landing-img.png' target=_blank>diese Bilddatei.</a>",
+      "lösung": "Lösung ist durch Link abrufbar",
+      "references": ["Uebung3/3_3.html"]
+    }
   },
   "exercise 4":{
-    "A4.1": {},
+    "A4.1": {
+      "tittle": "Funktionen",
+      "frage": "Schreiben Sie folgende Funktionen in JavaScript:<ol><li>Eine Funktion <code>identity()</code>, die ein Argument als Parameter entgegennimmt und dieses als Ergebnis zurückgibt.<li>Eine Funktion <code>identity_function()</code>, die ein Argument als Parameter entgegennimmt und eine Funktion zurückgibt, die dieses Argument zurückgibt.<li>Zwei binäre Funktionen <code>add</code> und <code>mul</code>, die Summe und Produkt berechnen.<li>Eine Addierer-Funktion <code>addf()</code>, so dass <code>addf(x)(y)</code> genau <code>x + y</code> zurückgibt. (Es haben also zwei Funktionsaufrufe zu erfolgen. <code>addf(x)</code> liefert eine Funktion, die auf <code>y</code> angewandt wird.)<li>Eine Funktion <code>applyf()</code>, die aus einer binären Funktion wie <code>add(x,y)</code> eine Funktion <code>addf</code> berechnet, die mit zwei Aufrufen das gleiche Ergebnis liefert, z.B. <code>addf = applyf(add); addf(x)(y)</code> soll <code>add(x,y)</code> liefern. Entsprechend <code>applyf(mul)(5)(6)</code> soll <code>30</code> liefern, wenn <code>mul</code> die binäre Multiplikation ist.",
+      "lösung": "<code>/*\n1. Eine Funktion identity(),\ndie ein Argument als Parameter entgegennimmt\nund dieses als Ergebnis zurückgibt.\n */\nfunction identity(value){\n    return value;\n}\n/*\n2. Eine Funktion identity_function(),\ndie ein Argument als Parameter entgegennimmt\nund eine Funktion zurückgibt,\ndie dieses Argument zurückgibt.\n */\nfunction identity_function(value){\n    return function (){\n        return value;\n    };\n}\n/*\n3. Eine binäre Funktion add, die die Summe berechnet\n */\nfunction add(x,y){\n    return x+y;\n}\n/*\n3. Eine binäre Funktion mul, die das Produkt berechnet\n */\nfunction mul(x,y){\n    return x*y;\n}\n/*\n4. Eine Addierer-Funktion addf(), so dass addf(x)(y) genau x + y zurückgibt.\n*/\nfunction addf(x){\n    return function (y){\n      return x+y;\n    };\n}\n/*\n5. Eine Funktion applyf(),\ndie aus einer binären Funktion\nwie add(x,y) eine Funktion addf berechnet\n */\nfunction applyf(func){\n    return function (x){\n        return function (y){\n            return func(x,y);\n        };\n    };\n}</code>"
+    },
     "A4.2": {},
     "A4.3": {},
     "A4.4": {}
