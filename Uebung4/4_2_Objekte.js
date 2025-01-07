@@ -25,7 +25,6 @@ function conflict(allCars) {
     }
     return conflicts;
 }
-
 //Nutzung
 let person1 = new Person("Alice");
 let person2 = new Person("Bob");

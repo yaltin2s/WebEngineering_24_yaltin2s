@@ -1,31 +1,49 @@
-const fibonaccicache= [0n,1n];
+// Fibonacci mit Memoization
+function fibonacci(n, memo = {}) {
+    if (n in memo) return memo[n];
+    if (n <= 1) return n;
+    memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo);
+    return memo[n];
+}
 
-function getFibonacci(n) {
-    if( fibonaccicache[n]!== undefined){
-        return fibonaccicache[n];
+// Ausgabe der ersten 2000 Fibonacci-Zahlen mit BigInt
+function printFibonacciUpTo2000() {
+    let fib = [0n, 1n]; // Array mit BigInt-Werten
+    for (let i = 2; i < 2000; i++) {
+        fib[i] = fib[i - 1] + fib[i - 2];
     }
-    fibonaccicache[n] = getFibonacci(n-1)+getFibonacci(n-2);
-    return fibonaccicache[n];
+    fib.forEach((val, index) => console.log(`F(${index}) = ${val}`));
 }
 
-for (let i = 0; i < 2000; i++) {
-    console.log(getFibonacci(i).toString());
-}
+printFibonacciUpTo2000();
 
-function findLargestFibonacciWithinJsMax() {
-    const MAX_VALUE_JS = Number.MAX_VALUE;
-    let a = 0n, b = 1n; // Verwende BigInt für große Zahlen
+// Berechnung der größten Fibonacci-Zahl, die als Integer sicher gespeichert werden kann
+function findMaxSafeFibonacci() {
+    let a = 0;
+    let b = 1;
     let index = 1;
-
-    while (b <= BigInt(MAX_VALUE_JS)) {
-        [a, b] = [b, a + b];
-        index += 1;
+    while (b <= Number.MAX_SAFE_INTEGER) {
+        let temp = a + b;
+        a = b;
+        b = temp;
+        index++;
     }
-
-    // Die letzte gültige Fibonacci-Zahl war `a` bei Index `index - 1`
-    return { value: a, index: index - 1 };
+    console.log(`Größte sichere Fibonacci-Zahl (MAX_SAFE_INTEGER): F(${index - 1}) = ${a}`);
 }
 
-const result = findLargestFibonacciWithinJsMax();
-console.log("Größte Fibonacci-Zahl unter Number.MAX_VALUE:", result.value.toString());
-console.log("Index der Zahl:", result.index);
+// Berechnung der größten Fibonacci-Zahl, die als Number gespeichert werden kann
+function findMaxFibonacci() {
+    let a = 0;
+    let b = 1;
+    let index = 1;
+    while (b <= Number.MAX_VALUE) {
+        let temp = a + b;
+        a = b;
+        b = temp;
+        index++;
+    }
+    console.log(`Größte Fibonacci-Zahl (MAX_VALUE): F(${index - 1}) = ${a}`);
+}
+
+findMaxSafeFibonacci();
+findMaxFibonacci();
