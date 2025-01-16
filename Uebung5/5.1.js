@@ -1,6 +1,5 @@
 // Anzahl der Wiederholungen für die Messungen
 const repetitions = 10000;
-
 // Funktion zur Messung von innerHTML
 function measureInnerHTML(element) {
     const start = performance.now();
@@ -10,7 +9,6 @@ function measureInnerHTML(element) {
     const end = performance.now();
     return end - start;
 }
-
 // Funktion zur Messung von innerText
 function measureInnerText(element) {
     const start = performance.now();
@@ -20,7 +18,6 @@ function measureInnerText(element) {
     const end = performance.now();
     return end - start;
 }
-
 // Funktion zur Messung von textContent
 function measureTextContent(element) {
     const start = performance.now();
@@ -30,7 +27,6 @@ function measureTextContent(element) {
     const end = performance.now();
     return end - start;
 }
-
 // Funktion zur Messung von outerHTML
 function measureOuterHTML(element) {
     const start = performance.now();
@@ -40,7 +36,6 @@ function measureOuterHTML(element) {
     const end = performance.now();
     return end - start;
 }
-
 // Hauptfunktion zum Ausführen der Performanzmessungen und Ausgabe der Ergebnisse
 function runPerformanceTests() {
     const element = document.createElement('div'); // Dummy-Element
@@ -52,12 +47,9 @@ function runPerformanceTests() {
         { method: 'textContent', time: measureTextContent(element) },
         { method: 'outerHTML', time: measureOuterHTML(element) }
     ];
-
     document.body.removeChild(element); // Element nach Test entfernen
-
     // Tabelle erstellen und Ergebnisse ausgeben
     console.table(results);
 }
-
 // Performanztests ausführen
 runPerformanceTests();

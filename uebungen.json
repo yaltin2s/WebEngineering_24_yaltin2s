@@ -106,25 +106,75 @@
     "A4.4": {
       "tittle": "TopSort",
       "frage": "In jedem Projekt fallen Aufgaben (Tasks) an. Zwischen den Aufgaben gibt es paarweise Abhängigkeiten. Z.B. kann Task2 von Task1 abhängen, d.h. erst muss Task1 fertig sein, bevor Task2 starten kann, weil es dessen Ergebnisse benötigt. Tasks können auch unabhängig voneinander sein und parallel ablaufen. In JavaScript können Sie die Abhängigkeiten in Arrays codieren, z.B. kann man bei <code>[[\"schlafen\",\"studieren\"],[\"essen\",\"studieren\"],[\"studieren\",\"prüfen\"]]</code> nicht prüfen, ohne vorher gegessen zu haben. Transitive Abhängigkeiten müssen also berücksichtigt werden.<br>Schreiben Sie in JavaScript eine Funktion topsort(), die eine <a href='https://de.wikipedia.org/wiki/Topologische_Sortierung' target='_blank'>topologische Sortierung</a> berechnet. Topologische Sortierung ist eine Form von Sortierung. Sie kennen die Funktion <code>Array.prototype.sort()</code> und wissen, was als Ergebnis erwartet wird, nämlich eine sortiere Liste. Genauso ist das hier. Die Funktion <code>topsort()</code> soll eine sortierte Liste ausgeben, die keine der eingegebenen Abhängigkeiten verletzt.<br>Achten Sie auf Performanz. Berechnen Sie die topologische Sortierung in <a href='https://de.wikipedia.org/wiki/Topologische_Sortierung#Gesamtverhalten' target='_blank'>linearer Zeit</a> (Average Case). Testen Sie Ihren Code und verwenden Sie für Ihre Tests <a href='https://developer.mozilla.org/de/docs/Web/API/console/assert_static' target='_blank'>console.assert</a>.",
-      "lösung": "<img src='Uebung4/TopSort.png' width=700 height=700>",
+      "lösung": "<img src='Uebung4/TopSort.png' width=100% height=auto>",
       "references": ["Uebung4/TopSort.js"]
     }
   },
   "exercise 5":{
-    "A5.1": {},
-    "A5.2":{},
-    "A5.3": {}
+    "A5.1": {
+      "tittle": "Performanz-Messungen von DOM-Operationen",
+      "frage": "Implementieren Sie Performanz-Messungen zum Vergleich von<ul><li><code>innerHTML</code>,</li><li><code>innerText</code>,</li><li><code>textContent</code>und</li><li><code>outerHTML</code></li></ul>selbstständig in JavaScript durch Nutzung der <a href='https://www.w3schools.com/js/js_htmldom.asp' target='_blank'>DOM-API</a>.Geben Sie die Messergebnisse als Tabelle aus. Verwenden Sie die eingebauten Zeitmessung-Funktionen <a href='https://developer.mozilla.org/de/docs/Web/API/Performance/now' target='_blank'>performance.now()</a>,siehe auch <a href='https://developer.chrome.com/blog/when-milliseconds-are-not-enough-performance-now?hl=de' target='_blank'>When-milliseconds-are-not-enough-performance-now</a>. Suchen Sie eine möglichst kurze und elegante Lösung.<br> Dabei ist zu beachten, dass Browser, um potenzielle Sicherheitsbedrohungen wie <a href='https://spectreattack.com/' target='_blank'>Meltdown oder Spectre</a> zu minimieren, den zurückgegebenen Wert normalerweise um einen bestimmten Betrag runden. Dies führt zu einer gewissen Ungenauigkeit. Beispielsweise rundet Firefox die zurückgegebene Zeit in Schritten von 1 Millisekunde. Diese Zwangsrundung kann man jedoch wiederum abschalten mittels der Firefox-Einstellung <code>privacy.reduceTimerPrecision</code>, siehe <a href='https://stackoverflow.com/questions/50117537/how-to-get-microsecond-timings-in-javascript-since-spectre-and-meltdown' target='_blank'>How to get microsecond timings in JavaScript since Spectre and Meltdown</a>.",
+      "lösung": "<img src='Uebung5/51.png' width=75% height=auto>",
+      "references": ["Uebung5/5.1.js"]
+    },
+    "A5.2":{
+      "tittle": "Rednerliste mit Zeitmessung",
+      "frage": "Implementieren Sie die interaktive Anwendung \"Rednerliste mit Zeitmessung\" selbstständig in JavaScript durch Nutzung der <a href='https://www.w3schools.com/js/js_htmldom.asp' target='_blank'>DOM-API</a> und der <a href='https://www.w3schools.com/js/js_timing.asp' target='_blank'>Timer-Funktionen</a>. Neue Redner sollen auf Knopfdruck hinzugefügt werden können. Deren Uhr wird dann sofort automatisch gestartet und alle anderen Uhren angehalten. Bei jedem Redner soll die individuelle, gemessene Redezeit sekundengenau angezeigt werden. Für jeden Redner soll es einen eigenen Start-/Stopp-Button geben. Es soll immer nur eine Uhr laufen. Angezeigt werden sollen die bisherigen Summenzeiten aller Redebeiträge der betreffenden Person. Suchen Sie eine möglichst kurze und elegante Lösung. Achten Sie gleichzeitig auf gute Usability: z.B. wenn die Eingabe mit einem Return beendet wird, soll der Klick auf den Button nicht mehr erforderlich sein.",
+      "lösung": "<img src='Uebung5/Rednerliste.png' width=100% height=auto>",
+      "references": ["Uebung5/Rednerliste.html"]
+    },
+    "A5.3": {
+      "tittle": "TopSort als Web-App",
+      "frage": "Schreiben Sie eine Weboberfläche, in der man beliebige Beziehungen (Vorrang-Relationen) eingeben kann, für die dann die topologische Sortierung per Knopfdruck auf der Webseite ausgegeben wird.<br>Für die Eingabe können Sie HTML5-Eingabefelder oder das HTML-Attribut <code>contenteditable</code> verwenden.",
+      "lösung": "<img src='Uebung5/TopSort.png' width=100% height=auto>",
+      "references": ["Uebung5/TopSort.html"]
+    }
   },
   "exercise 6":{
-    "A6.1": {},
-    "A6.2": {},
-    "A6.3": {},
-    "A6.4": {},
-    "A6.5": {}
+    "A6.1": {
+      "tittle": "Klammerpaare",
+      "frage": "Schreiben Sie eine Webseite, in die man eine Zeichenkette mit beliebigen Buchstaben, Zahlen und Sonderzeichen eingeben kann, die beliebig geschachtelte Klammern <code>[...]</code>, <code>(...)</code> und <code>{...}</code> enthält, sodass sofort geprüft wird, ob alle Klammerpaare korrekt geschachtelt sind. Das Eingabefeld der Zeichenkette soll rot gefärbt werden, wenn es ein Klammerpaar gibt, das falsch geschachtelt ist. Verwenden Sie für Ihre Tests die Funktion <a href='https://developer.mozilla.org/de/docs/Web/API/console/assert_static' target='_blank'>console.assert</a>.<br>Bonus: Verallgemeinern Sie Ihren Algorithmus, sodass man Klammerpaare als Parameter frei definieren kann. Es müssen also nicht <code>[...]</code>, <code>(...)</code> und <code>{...}</code> sein, sondern es können auch andere Zeichen gewählt werden.",
+      "lösung": "<img src='Uebung6/Klammerpaare.png' width=80% height=auto><br><h4>Bonus</h4><img src='Uebung6/Bonus.png' width=80% height=auto>",
+      "references": ["Uebung6/Klammerpaare.html"]
+    },
+    "A6.2": {
+      "tittle": "Topologische Iterierbarkeit",
+      "frage": " Schreiben Sie eine ES6-Klasse <code>Vorrang</code> für Vorrangrelationen, z.B.:<pre><code>const studentenLeben = new Vorrang( [\n  [ \"schlafen\", \"studieren\" ],\n  [ \"essen\", \"studieren\" ],\n  [ \"studieren\", \"prüfen\" ]\n] )</code></pre><p>Wählen Sie eine Implementierung, die universell gültig, also nicht nur für dieses Beispiel gilt.(Überlegen Sie sich, über welche Properties und Methoden eine solche Klasse verfügen sollte und wie TopSort hier hineinspielt. Topologische Iterierbarkeit und topologischer Generator sind Gegenstand der nächsten Übungen weiter unten auf diesem Übungsblatt und sollten für die folgenden Aufgaben aufgespart werden.)<br>Stellen Sie bei Ihrer Klasse die topologische Iterierbarkeit her (zunächst über das Iterationsprotokoll, ohne Generator, ohne <code>yield</code>).<br>Zum Beispiel soll dadurch folgende <code>for ... of loop</code> möglich werden, mit der die Elemente in topologischer Sortierung durchlaufen werden:</p><pre><code>for ( const next of studentenLeben ) {\n  console.log( next );\n}</code></pre><p>Auf der Entwicklerkonsole wird dadurch ausgegeben:</p><pre class='ausgabe'>schlafen<br>essen<br>studieren<br>prüfen<br></pre><p>Eine topologische Sortierung im Konstruktor vorauszuberechnen, wäre eine triviale Lösung. Versuchen Sie es stattdessen mit \"lazy computation\", d.h. erst beim Aufruf von <code>next()</code> wird die erforderliche Berechnung durchgeführt. Achten Sie auf einen minimalen Aufwand, d.h. bei jedem <code>next()</code> soll nicht alles erneut sortiert werden.<br>Verwenden Sie so weit wie möglich High-Level-Methoden wie <a href='https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Map' target='_blank'>Object.keys</a> und High-Level-Datenstrukturen wie <a href='https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Map' target='_blank'>Map</a> und <a href='https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Set' target='_blank'>Set</a> und deren Methoden, anstatt mühsam von Hand zu iterieren und zu zählen. Verwenden Sie für Ihre Tests <a href='https://developer.mozilla.org/de/docs/Web/API/console/assert_static' target='_blank'>console.assert</a>.<br>Betten Sie Ihren ECMAScript-Code in eine Webseite ein, so dass man die Vorrangrelation dort eingeben kann.</p>",
+      "lösung": "<img src='Uebung6/Topologische Iterierbarkeit.png' width=100% height= auto>",
+      "references": ["Uebung6/Topologische_Iterierbarkeit.html"]
+    },
+    "A6.3": {
+      "tittle": "Topologische Iterierbarkeit",
+      "frage": "Stellen Sie bei Ihrer Klasse aus der letzten Aufgabe die topologische Iterierbarkeit mittels Generator her. Wählen Sie eine Implementierung, die universell gültig, also nicht nur für das Beispiel gilt. Verwenden Sie für Ihre Tests <a href='https://developer.mozilla.org/de/docs/Web/API/console/assert_static' target='_blank'>console.assert</a>.",
+      "lösung": "<img src='Uebung6/6_3Topologische_Iterbarkeit.png' width=100% height= auto>",
+      "references": ["Uebung6/6_3Topologische_Iterbarkeit.html"]
+    },
+    "A6.4": {
+      "tittle": "Proxy",
+      "frage": "Erweitern Sie Ihre Vorrang-Klasse um Logging, indem Sie ein <a href='https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Proxy' target='_blank'>Proxy</a> einfügen. Lassen Sie sich vom Logger bei jedem Schritt ausgeben, wie viele der Vorrangrelationen noch übrig bleiben. Verwenden Sie wieder so weit wie möglich <a href='https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Object/keys' target='_blank'>Object.keys</a>, <a href='https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Map' target='_blank'>Map</a> und <a href='https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Set' target='_blank'>Set</a> und für Ihre Tests <a href='https://developer.mozilla.org/de/docs/Web/API/console/assert_static' target='_blank'>console.assert</a>.",
+      "lösung": "<img src='Uebung6/Proxy.png' width=100% height= auto>",
+      "references": ["Uebung6/Proxy.html"]
+    },
+    "A6.5": {
+      "tittle": "DeepCopy",
+      "frage": "Schreiben Sie eine rekursive Funktion <code>deepCopy( struct )</code> als ES6-Ausdruck, sodass beliebig geschachtelte Arrays und Objekte tiefenkopiert werden können.<br>Verwenden Sie zu diesem Zweck:<ul><li><a href='https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Conditional_operator' target='_blank'>konditionalen ternären Operator</a></li><li><a href='https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/map' target='_blank'>Array.map()</a></li><li><a href='https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries' target='_blank'>Object.fromEntries().</a></li><li><a href='https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Object/entries' target='_blank'>Object.entries()</a></li></ul>Verwenden Sie dabei nur Arrow-Funktionen und Ausdrücke, keine Anweisungen, keine Blöcke und keine JSON-Methoden. Nutzen Sie für Ihre Tests <a href='https://developer.mozilla.org/de/docs/Web/API/console/assert_static' target='_blank'>console.assert</a>.",
+      "lösung": "<img src='Uebung6/Deep_Copy.png' width=100%>",
+      "references": ["Uebung6/Deep_Copy.js"]
+    }
   },
   "exercise 7":{
-    "A7.1": {},
-    "A7.2": {}
+    "A7.1": {
+      "tittle": "Funktionen in JavaScript",
+      "frage": "<ul><li>Schreiben Sie eine Funktion <code>curry</code> (von Currying), die eine binäre Funktion und ein Argument nimmt, um daraus eine Funktion zu erzeugen, die ein zweites Argument entgegennimmt. Beispiele: <code>add3 = curry(add, 3); add3(4)</code> ergibt <code>7 </code>und <code>curry(mul, 5)(6)</code> ergibt <code>30</code></li><li>Erzeugen Sie die <code>inc</code>-Funktion mithilfe von <code>addf</code> oder <code>applyf</code> (aus Aufgabe 4.1) oder <code>curry</code>ohne die Funktion <code>inc</code> selbst zu implementieren. <code>inc(x)</code> soll immer <code>x + 1</code> zurückgeben und lässt sich natürlich auch direkt implementieren. Das ist aber hier nicht die Aufgabe. Vielleicht schaffen Sie es, drei Varianten der <code>inc</code>-Implementierung zu schreiben?</li></ul>",
+      "lösung": "",
+      "references": []
+    },
+    "A7.2": {
+      "tittle": "Textanalyse mit filter-map-reduce",
+      "frage": "",
+      "lösung": "",
+      "references": []
+    }
   },
   "exercise 8":{
     "A8.1": {},

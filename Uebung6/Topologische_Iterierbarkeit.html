@@ -2,9 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vorrang Class</title>
 </head>
 <body>
-
+<script>
+    class Vorrang {
+        constructor(relations) {
+            this.graph = new Map();
+            this.inDegree = new Map();
+            relations.forEach(([source, target]) => {
+                if (!this.graph.has(source)) {
+                    this.graph.set(source, new Set());
+                    this.inDegree.set(source, 0);
+                }
+                if (!this.graph.has(target)) {
+                    this.graph.set(target, new Set());
+                    this.inDegree.set(target, 0);
+                }
+                this.graph.get(source).add(target);
+                this.inDegree.set(target, this.inDegree.get(target) + 1);
+            });
+            this.queue = [...this.inDegree.keys()].filter(node => this.inDegree.get(node) === 0);
+        }
+        getNext() {
+            if (this.queue.length === 0) {
+                return null; // No more elements
+            }
+            const current = this.queue.shift();
+            this.graph.get(current).forEach(neighbor => {
+                this.inDegree.set(neighbor, this.inDegree.get(neighbor) - 1);
+                if (this.inDegree.get(neighbor) === 0) {
+                    this.queue.push(neighbor);
+                }
+            });
+            return current;
+        }
+        [Symbol.iterator]() {
+            return {
+                next: () => {
+                    const next = this.getNext();
+                    return { value: next, done: next === null };
+                }
+            };
+        }
+    }
+    // Example usage:
+    const studentenLeben = new Vorrang([
+        ["schlafen", "studieren"],
+        ["essen", "studieren"],
+        ["studieren", "prüfen"]
+    ]);
+    document.write("<h1>Vorrang Sequence</h1>");
+    document.write("<ul>");
+    for (const next of studentenLeben) {
+        console.log(next);
+        document.write(`<li>${next}</li>`);
+    }
+    document.write("</ul>");
+</script>
 </body>
 </html>

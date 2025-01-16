@@ -98,5 +98,35 @@ button:hover,button:active,button:focus{
     grid-template: "a a a";
 }
 #miniprojects button{
+    width: initial;
+    height: 50px;
+}
+.literatur ul{
+    justify-content: left;
+    padding: 0 10px 10px 10px;
+    text-align: left;
+    list-style-type: circle;
+}
+.literatur ul li{justify-content: space-around}
+.literatur h2{ background-color: #16425B;
+    color: #D9DCD6;
+    text-align: left;}
+pre{
+    background-color: #f7f0f2;
+    border: 1px solid #c6254e;
+    border-radius: 5px;
+    color: #c6254e;
+    text-align: left;
     width: auto;
+    padding: 10px;
+    margin-left: 50px;
+}
+.ausgabe{
+    background-color: #cbcbcb;
+    color: black;
+    text-align: left;
+    border-radius: 5px;
+    border: black solid 1px;
+    width: auto;
+
 }

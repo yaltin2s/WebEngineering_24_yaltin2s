@@ -56,9 +56,9 @@
      }
    });
  </script>
-
-/*  ******Bonus****** */
-/*Funktion Änderungen von Klammerpaare*/
+<h1>Bonus</h1>
+<p>Geben Sie eine Zeichenkette mit geschachtelten Klammern ein:</p>
+<input type="text" id="inputbonus"  placeholder="Geben Sie hier Ihre Zeichenkette ein...">
 <script>
   function checkKlammer(input, klammerpaare){
     const stack= [];
@@ -76,20 +76,19 @@
     return stack.length=== 0;
   }
   //Creat Event Listener for Input
-  const inputField=document.getElementById('inputField');
+  const inputbonus=document.getElementById('inputbonus');
   const klammerpaare={
     "[": "]",
     "{": "}",
     "(": ")",
     "<": ">", // Beispiel: Neue Klammerpaare
-    "/*": "*/" // Multichar-Klammern unterstützt
   };
-  inputField.addEventListener("input", () => {
-    const isValid = checkKlammer(inputField.value, klammerpaare);
+  inputbonus.addEventListener('input', () => {
+    const isValid = checkKlammer(inputbonus.value, klammerpaare);
     if (isValid) {
-      inputField.classList.remove("error");
+      inputbonus.classList.remove("error");
     } else {
-      inputField.classList.add("error");
+      inputbonus.classList.add("error");
     }
   });
 </script>
