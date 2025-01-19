@@ -1,0 +1,4 @@
+Welt
+ergänzt durch Datei B
+ist aus Datei B
+für den Test

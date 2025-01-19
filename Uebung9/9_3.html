@@ -1,260 +1,173 @@
 <!DOCTYPE html>
-
-<html lang="de">
-
+<html lang="en">
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Tic-Tac-Toe</title>
-
   <style>
-
     body {
-
       font-family: Arial, sans-serif;
-
       display: flex;
-
+      flex-direction: column;
       justify-content: center;
-
       align-items: center;
-
       height: 100vh;
-
       margin: 0;
-
       background-color: #f4f4f4;
-
     }
 
-    .game {
-
+    .board {
       display: grid;
-
       grid-template-columns: repeat(3, 100px);
-
       grid-template-rows: repeat(3, 100px);
-
       gap: 5px;
-
     }
 
     .cell {
-
       width: 100px;
-
       height: 100px;
-
-      background-color: white;
-
-      border: 1px solid #ccc;
-
+      background-color: #fff;
+      border: 2px solid #333;
       display: flex;
-
       justify-content: center;
-
       align-items: center;
-
       cursor: pointer;
-
     }
 
-    .cell:hover {
-
-      background-color: #e8e8e8;
-
+    .cell svg {
+      width: 40px;
+      height: 40px;
     }
 
-    svg {
-
-      width: 70%;
-
-      height: 70%;
-
+    .cell.taken {
+      pointer-events: none;
     }
 
-    .winner {
-
-      text-align: center;
-
+    .message {
       margin-top: 20px;
-
-      font-size: 1.5em;
-
-      color: #333;
-
+      font-size: 1.2em;
+      text-align: center;
     }
 
+    .reset {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .reset:hover {
+      background-color: #0056b3;
+    }
   </style>
-
 </head>
-
 <body>
-
-<div class="container">
-
-  <div class="game" id="gameBoard"></div>
-
-  <div class="winner" id="winnerMessage"></div>
-
+<div>
+  <div class="board" id="board"></div>
+  <div class="message" id="message"></div>
+  <button class="reset" id="reset">Reset Game</button>
 </div>
 
 <script>
-
-  const gameBoard = document.getElementById('gameBoard');
-
-  const winnerMessage = document.getElementById('winnerMessage');
-
+  const board = document.getElementById('board');
+  const message = document.getElementById('message');
+  const resetButton = document.getElementById('reset');
   let currentPlayer = 'X';
+  const cells = Array(9).fill(null);
 
-  let board = Array(9).fill(null);
+  function createSVG(mark) {
+    const xmlns = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(xmlns, "svg");
+    if (mark === 'X') {
+      const line1 = document.createElementNS(xmlns, "line");
+      line1.setAttribute("x1", "10");
+      line1.setAttribute("y1", "10");
+      line1.setAttribute("x2", "30");
+      line1.setAttribute("y2", "30");
+      line1.setAttribute("stroke", "#333");
+      line1.setAttribute("stroke-width", "8");
 
-  function createCell(index) {
-
-    const cell = document.createElement('div');
-
-    cell.classList.add('cell');
-
-    cell.addEventListener('click', () => handleCellClick(index, cell), { once: true });
-
-    return cell;
-
-  }
-
-  function handleCellClick(index, cell) {
-
-    board[index] = currentPlayer;
-
-    drawSymbol(cell, currentPlayer);
-
-    if (checkWinner()) {
-
-      winnerMessage.textContent = `Spieler ${currentPlayer} gewinnt!`;
-
-      gameBoard.childNodes.forEach(c => c.style.pointerEvents = 'none');
-
-    } else if (board.every(Boolean)) {
-
-      winnerMessage.textContent = "Unentschieden!";
-
-    } else {
-
-      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-
-    }
-
-  }
-
-  function drawSymbol(cell, player) {
-
-    const svgNS = 'http://www.w3.org/2000/svg';
-
-    const svg = document.createElementNS(svgNS, 'svg');
-
-    if (player === 'X') {
-
-      const line1 = document.createElementNS(svgNS, 'line');
-
-      line1.setAttribute('x1', '10');
-
-      line1.setAttribute('y1', '10');
-
-      line1.setAttribute('x2', '90');
-
-      line1.setAttribute('y2', '90');
-
-      line1.setAttribute('stroke', 'black');
-
-      line1.setAttribute('stroke-width', '5');
-
-      const line2 = document.createElementNS(svgNS, 'line');
-
-      line2.setAttribute('x1', '90');
-
-      line2.setAttribute('y1', '10');
-
-      line2.setAttribute('x2', '10');
-
-      line2.setAttribute('y2', '90');
-
-      line2.setAttribute('stroke', 'black');
-
-      line2.setAttribute('stroke-width', '5');
+      const line2 = document.createElementNS(xmlns, "line");
+      line2.setAttribute("x1", "30");
+      line2.setAttribute("y1", "10");
+      line2.setAttribute("x2", "10");
+      line2.setAttribute("y2", "30");
+      line2.setAttribute("stroke", "#333");
+      line2.setAttribute("stroke-width", "8");
 
       svg.appendChild(line1);
-
       svg.appendChild(line2);
-
-    } else {
-
-      const circle = document.createElementNS(svgNS, 'circle');
-
-      circle.setAttribute('cx', '50');
-
-      circle.setAttribute('cy', '50');
-
-      circle.setAttribute('r', '40');
-
-      circle.setAttribute('stroke', 'black');
-
-      circle.setAttribute('stroke-width', '5');
-
-      circle.setAttribute('fill', 'none');
+    } else if (mark === 'O') {
+      const circle = document.createElementNS(xmlns, "circle");
+      circle.setAttribute("cx", "20");
+      circle.setAttribute("cy", "20");
+      circle.setAttribute("r", "15");
+      circle.setAttribute("stroke", "#333");
+      circle.setAttribute("stroke-width", "8");
+      circle.setAttribute("fill", "none");
 
       svg.appendChild(circle);
-
+    }
+    return svg;
+  }
+  function checkWinner() {
+    const winningCombinations = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ];
+    for (const combination of winningCombinations) {
+      const [a, b, c] = combination;
+      if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
+        return cells[a];
+      }
+    }
+    if (!cells.includes(null)) {
+      return 'Draw';
     }
 
-    cell.appendChild(svg);
-
+    return null;
   }
+  function handleClick(event, index) {
+    if (!cells[index]) {
+      cells[index] = currentPlayer;
+      event.target.classList.add('taken');
+      event.target.appendChild(createSVG(currentPlayer));
 
-  function checkWinner() {
-
-    const winPatterns = [
-
-      [0, 1, 2], [3, 4, 5], [6, 7, 8],
-
-      [0, 3, 6], [1, 4, 7], [2, 5, 8],
-
-      [0, 4, 8], [2, 4, 6]
-
-    ];
-
-    return winPatterns.some(pattern =>
-
-            pattern.every(index => board[index] === currentPlayer)
-
-    );
-
+      const winner = checkWinner();
+      if (winner) {
+        message.textContent = winner === 'Draw' ? "It's a draw!" : `${winner} wins!`;
+        board.querySelectorAll('.cell').forEach(cell => cell.style.pointerEvents = 'none');
+      } else {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        message.textContent = `Player ${currentPlayer}'s turn`;
+      }
+    }
   }
-
-  function initGame() {
-
-    gameBoard.innerHTML = '';
-
-    board = Array(9).fill(null);
-
+  function initializeBoard() {
+    board.innerHTML = '';
+    cells.fill(null);
     currentPlayer = 'X';
-
-    winnerMessage.textContent = '';
+    message.textContent = `Player ${currentPlayer}'s turn`;
 
     for (let i = 0; i < 9; i++) {
-
-      gameBoard.appendChild(createCell(i));
-
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.addEventListener('click', (event) => handleClick(event, i));
+      board.appendChild(cell);
     }
-
   }
-
-  initGame();
-
+  resetButton.addEventListener('click', initializeBoard);
+  initializeBoard();
 </script>
-
 </body>
-
 </html>
-

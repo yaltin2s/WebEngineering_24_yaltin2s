@@ -130,3 +130,14 @@ pre{
     width: auto;
 
 }
+#element.dark_mode {
+    background-color: black;
+    color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+    #element.dark_auto {
+        background-color: black;
+        color: white;
+    }
+}

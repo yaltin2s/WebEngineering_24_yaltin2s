@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statische Klassen in TypeScript</title>
+</head>
+<body>
+<h1>Statische Klassen in TypeScript</h1>
+<p>In TypeScript gibt es keine statischen Klassen im klassischen Sinne wie in Java oder C#. Stattdessen bietet TypeScript die Möglichkeit, statische Mitglieder in Klassen zu definieren. Dies bedeutet, dass Sie innerhalb einer Klasse Methoden oder Eigenschaften als statisch deklarieren können, sodass sie ohne eine Instanziierung der Klasse aufgerufen werden können.</p>
+
+<h2>Statische Mitglieder in TypeScript</h2>
+<p>In TypeScript können Sie statische Methoden und Eigenschaften zu einer Klasse hinzufügen. Diese sind dann auf die Klasse selbst und nicht auf Instanzen der Klasse zugreifbar. Ein Beispiel:</p>
+<pre><code>class MyClass {
+  static staticProperty = 'This is a static property';
+
+  static staticMethod() {
+    console.log('This is a static method');
+  }
+}
+
+// Zugriff auf statische Mitglieder
+console.log(MyClass.staticProperty);  // Ausgabe: This is a static property
+MyClass.staticMethod();               // Ausgabe: This is a static method
+    </code></pre>
+
+<h2>Unterschied zu Java und C#</h2>
+<h3>1. Java</h3>
+<p>In Java sind statische Klassen ein Konzept, das häufig im Zusammenhang mit inneren Klassen verwendet wird. Eine innere statische Klasse in Java kann ohne eine Instanz der äußeren Klasse erstellt werden, z.B.:</p>
+<pre><code>public class OuterClass {
+    static class StaticNestedClass {
+        void display() {
+            System.out.println("Static nested class");
+        }
+    }
+}
+    </code></pre>
+<p>In Java können statische Methoden und Felder mit dem <code>static</code>-Schlüsselwort direkt an die Klasse gebunden werden, ähnlich wie in TypeScript.</p>
+
+<h3>2. C#</h3>
+<p>In C# gibt es das Konzept von <strong>statischen Klassen</strong>, die vollständig statisch sind und keine Instanzen erzeugt werden können. Eine statische Klasse kann nur statische Mitglieder enthalten und wird mit dem Schlüsselwort <code>static</code> deklariert:</p>
+<pre><code>public static class MyStaticClass {
+    public static void StaticMethod() {
+        Console.WriteLine("Static method in C#");
+    }
+}
+    </code></pre>
+<p>C# erlaubt es auch, statische Methoden und Felder in normalen Klassen zu haben, aber eine "statische Klasse" selbst kann nicht instanziiert werden.</p>
+
+<h2>Unterschiede von TypeScript zu Java und C#</h2>
+<h3>1. Vererbung und Instanziierung</h3>
+<p>In TypeScript können statische Mitglieder von Klassen nicht vererbt oder überschrieben werden. In Java und C# hingegen können statische Mitglieder einer Klasse in abgeleiteten Klassen „vererbt“ werden, aber sie können in abgeleiteten Klassen nicht überschrieben werden.</p>
+
+<h3>2. Modularität und Namensräume</h3>
+<p>TypeScript verwendet die Modulexportierung und -importierung, wodurch statische Funktionen oder Objekte auch außerhalb von Klassen als Module exportiert werden können. In Java und C# gibt es für diesen Zweck keine "module"-artige Struktur, da sie auf Namespaces bzw. Pakete angewiesen sind.</p>
+
+<h3>3. Typisierung</h3>
+<p>TypeScript ist eine superset von JavaScript und bietet eine statische Typisierung, jedoch wird der Code zur Laufzeit in JavaScript kompiliert. Das bedeutet, dass TypeScript während der Kompilierung hilft, Fehler zu erkennen, aber zur Laufzeit sind keine Type-Checks wie in Java oder C# verfügbar, die eine strengere Laufzeitüberprüfung erfordern.</p>
+
+<h2>Fazit</h2>
+<p>In TypeScript gibt es keine speziellen "statischen Klassen" wie in Java oder C#, aber statische Mitglieder und Methoden können innerhalb von normalen Klassen definiert werden. TypeScript ist flexibler und erlaubt die Verwendung von Modulen und Namespaces, was eine größere Modularität und Wiederverwendbarkeit des Codes ermöglicht.</p>
+</body>
+</html>

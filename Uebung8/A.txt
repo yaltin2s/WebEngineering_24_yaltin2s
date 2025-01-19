@@ -1,0 +1,4 @@
+Hallo
+Dies ist eine Zeile aus Datei A
+Die dritte Zeile
+Noch eine Zeile

@@ -1,112 +1,108 @@
 <!DOCTYPE html>
-
 <html lang="de">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>SVG Use The Platform</title>
-
+  <title>Balkendiagramm mit SVG</title>
   <style>
-
     body {
-
-      margin: 0;
-
-      padding: 0;
-
       font-family: Arial, sans-serif;
-
-      background-color: white;
-
-      display: flex;
-
-      justify-content: center;
-
-      align-items: center;
-
-      height: 100vh;
-
-      text-align: center;
-
+      margin: 20px;
+      background-color: snow;
     }
-
-    .title {
-
-      font-size: 1.2em;
-
-      font-weight: bold;
-
-      margin-bottom: 20px;
-
+    .chart-container {
+      max-width: 800px;
+      margin: 0 auto;
     }
-
-    svg {
-
-      display: block;
-
-      margin: auto;
-
-      background-color: #d4899b; /* rosa Farbton */
-
+    .bar {
+      fill: steelblue;
+      transition: height 0.5s, y 0.5s;
     }
-
-    text {
-
-      fill: white;
-
-      font-size: 50px;
-
-      font-family: Arial, sans-serif;
-
+    .bar:hover {
+      fill: darkblue;
+    }
+    .label {
+      font-size: 12px;
+      text-anchor: end;
+      fill: #333;
+    }
+    .value {
+      font-size: 12px;
       text-anchor: middle;
-
-      dominant-baseline: middle;
-
+      fill: #000;
     }
-
-    line {
-
-      stroke: white;
-
-      stroke-width: 2;
-
-    }
-
   </style>
-
 </head>
-
 <body>
-
-<div>
-
-  <div class="title">SVG Use The Platform</div>
-
-  <svg width="300" height="300">
-
-    <rect width="300" height="300" fill="#d4899b" />
-
-    <text x="150" y="70">Use</text>
-
-    <line x1="50" y1="90" x2="250" y2="90" />
-
-    <text x="150" y="150">The</text>
-
-    <line x1="50" y1="170" x2="250" y2="170" />
-
-    <text x="150" y="230">Platform</text>
-
-    <line x1="50" y1="250" x2="250" y2="250" />
-
-  </svg>
-
+<h1>Balkendiagramm mit Animation</h1>
+<h4>Kommerzieller EU großhandel für Export von 2015 bis 2020</h4>
+<div class="chart-container">
+  <svg id="barChart" width="800" height="400"></svg>
 </div>
+<script>
+  // Daten aus JSON-Datei abrufen
+  fetch('daten.json')
+          .then(response => response.json())
+          .then(data => {
+            // Relevante Daten extrahieren und bereinigen
+            const chartData = data.map(d => ({
+              label: d["Datum von"],
+              value: parseFloat(d["Nettoexport [MWh] Berechnete Auflösungen"].replace(/\./g, '').replace(',', '.')) || 0
+            }));
+            // SVG-Element und Dimensionen
+            const svg = document.getElementById('barChart');
+            const width = svg.getAttribute('width');
+            const height = svg.getAttribute('height');
+            const padding = 40;
 
+            // Skalen berechnen
+            const maxValue = Math.max(...chartData.map(d => d.value));
+            const barWidth = (width - 2 * padding) / chartData.length;
+
+            // Balken zeichnen
+            chartData.forEach((d, i) => {
+              const barHeight = (d.value / maxValue) * (height - 2 * padding);
+              const x = padding + i * barWidth;
+              const y = height - padding - barHeight;
+
+              // Balken
+              const bar = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+              bar.setAttribute('class', 'bar');
+              bar.setAttribute('x', x);
+              bar.setAttribute('y', height - padding); // Start unten für Animation
+              bar.setAttribute('width', barWidth - 10);
+              bar.setAttribute('height', 0); // Höhe 0 für Animation
+              // Animation für Höhe und Position
+              setTimeout(() => {
+                bar.setAttribute('y', y);
+                bar.setAttribute('height', barHeight);
+              }, 100 * i);
+              svg.appendChild(bar);
+              // Beschriftung der Balken
+              const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+              label.setAttribute('class', 'label');
+              label.setAttribute('x', x + (barWidth - 10) / 2);
+              label.setAttribute('y', height - padding + 15);
+              label.textContent = d.label;
+              svg.appendChild(label);
+              // Werte anzeigen
+              const value = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+              value.setAttribute('class', 'value');
+              value.setAttribute('x', x + (barWidth - 10) / 2);
+              value.setAttribute('y', y - 5);
+              value.textContent = d.value.toFixed(2);
+              svg.appendChild(value);
+            });
+            // Achsen
+            const axis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            axis.setAttribute('x1', padding);
+            axis.setAttribute('y1', height - padding);
+            axis.setAttribute('x2', width - padding);
+            axis.setAttribute('y2', height - padding);
+            axis.setAttribute('stroke', '#000');
+            svg.appendChild(axis);
+          })
+          .catch(error => console.error('Fehler beim Abrufen der JSON-Daten:', error));
+</script>
 </body>
-
 </html>
-

@@ -165,30 +165,75 @@
   "exercise 7":{
     "A7.1": {
       "tittle": "Funktionen in JavaScript",
-      "frage": "<ul><li>Schreiben Sie eine Funktion <code>curry</code> (von Currying), die eine binäre Funktion und ein Argument nimmt, um daraus eine Funktion zu erzeugen, die ein zweites Argument entgegennimmt. Beispiele: <code>add3 = curry(add, 3); add3(4)</code> ergibt <code>7 </code>und <code>curry(mul, 5)(6)</code> ergibt <code>30</code></li><li>Erzeugen Sie die <code>inc</code>-Funktion mithilfe von <code>addf</code> oder <code>applyf</code> (aus Aufgabe 4.1) oder <code>curry</code>ohne die Funktion <code>inc</code> selbst zu implementieren. <code>inc(x)</code> soll immer <code>x + 1</code> zurückgeben und lässt sich natürlich auch direkt implementieren. Das ist aber hier nicht die Aufgabe. Vielleicht schaffen Sie es, drei Varianten der <code>inc</code>-Implementierung zu schreiben?</li></ul>",
-      "lösung": "",
-      "references": []
+      "frage": "<ul><li>Schreiben Sie eine Funktion <code>curry</code> (von Currying), die eine binäre Funktion und ein Argument nimmt, um daraus eine Funktion zu erzeugen, die ein zweites Argument entgegennimmt. Beispiele: <code>add3 = curry(add, 3); add3(4)</code> ergibt <code>7 </code>und <code>curry(mul, 5)(6)</code> ergibt <code>30</code></li><li>Erzeugen Sie die <code>inc</code>-Funktion mithilfe von <code>addf</code> oder <code>applyf</code> (aus Aufgabe 4.1) oder <code>curry</code>ohne die Funktion <code>inc</code> selbst zu implementieren. <code>inc(x)</code> soll immer <code>x + 1</code> zurückgeben und lässt sich natürlich auch direkt implementieren. Das ist aber hier nicht die Aufgabe. Vielleicht schaffen Sie es, drei Varianten der <code>inc</code>-Implementierung zu schreiben?</li><li>Schreiben Sie eine Funktion <code>methodize</code>, die eine binäre Funktion (z.B. <code>add</code> oder <code>mul</code>) in eine unäre Methode verwandelt. Nach <code>Number.prototype.add = methodize(add)</code> soll <code>(3).add(4)</code> genau <code>7</code> ergeben.</li>Schreiben Sie eine Funktion <code>demethodize</code>, die eine unäre Methode (z.B. <code>add</code> oder <code>mul</code>) in eine binäre Funktion umwandelt. <code>demethodize(Number.prototype.add)(5, 6)</code> soll <code>11</code> ergeben.<li></li><li>Schreiben Sie eine Funktion twice, die eine binäre Funktion in eine unäre Funktion umwandelt, die den einen Parameter zweimal weiter reicht. Also z.B. <code>var double = twice(add); double(11)</code> soll <code>22</code> ergeben und <code>var square = twice(mul);</code> <code>square(11)</code> soll <code>mul(11,11) === 121</code> ergeben.</li><li>Schreiben Sie eine Funktion <code>composeu</code>, die zwei unäre Funktionen in eine einzelne unäre Funktion transformiert, die beide nacheinander aufruft. Also z.B. soll <code>composeu(double, square)(3)</code> genau <code>36</code> ergeben.</li><li>Schreiben Sie eine Funktion <code>composeb</code>, die zwei binäre Funktionen in eine einzelne Funktion transformiert, die beide nacheinander aufruft. Also z.B. <code>composeb(add, mul)(2, 3, 5)</code> soll <code>25</code> ergeben.</li><li>Schreiben Sie eine Funktion <code>once</code>, die einer anderen Funktion nur einmal erlaubt, aufgerufen zu werden. Also z.B. <code>add_once = once(add); add_once(3, 4)</code> soll beim ersten Mal <code>7</code> ergeben, beim zweiten Mal soll jedoch <code>add_once(3, 4)</code> einen Fehlerabbruch bewirken.</li><li>Schreiben Sie eine Fabrik-Funktion <code>counterf</code>, die zwei Funktionen <code>inc</code> und <code>dec</code> berechnet, die einen Zähler hoch- und herunterzählen. Also z.B. <code>counter = counterf(10)</code>. Dann soll <code>counter.inc()</code> genau <code>11</code> und <code>counter.dec()</code> wieder <code>10</code> ergeben.</li><li>Schreiben Sie eine rücknehmbare Funktion <code>revocable</code>, die als Parameter eine Funktion nimmt und diese bei Aufruf ausführt. Sobald die Funktion aber mit <code>revoke()</code> zurückgenommen wurde, führt ein erneuter Aufruf zu einem Fehler. Also z.B.:\n<code>temp = revocable(alert);</code>\n<code>temp.invoke(7); // führt zu alert(7);</code>\n<code>temp.revoke();</code>\n<code>temp.invoke(8); // Fehlerabbruch!</code></li><li>Schreiben Sie ein \"Array Wrapper\"-Objekt mit den Methoden <code>get</code>, <code>store</code> und <code>append</code>, sodass ein Angreifer keinen Zugriff auf das innere, private Array hat. Also z.B.:\n<code>my_vector = vector();</code>\n<code>my_vector.append(7);</code>\n<code>my_vector.store(1, 8);</code>\n<code>my_vector.get(0); // 7</code>\n<code>my_vector.get(1); // 8</code></li></ul>",
+      "lösung": "Lösung ist durch den Link abrufbar",
+      "references": ["Uebung7/7_1.js"]
     },
     "A7.2": {
       "tittle": "Textanalyse mit filter-map-reduce",
+      "frage": "Schreiben Sie in JavaScript eine Textanalyse. Ermitteln Sie die häufigsten Begriffe im Text <a href='https://kaul.inf.h-brs.de/ccm/we/ws24/resources/assets/Plagiatsresolution.html' target=_blank>Plagiatsresolution</a>. Filtern Sie dabei alle <a href='https://de.wikipedia.org/wiki/Stoppwort' target=_blank>Stoppworte</a> und HTML-Tags. Reduzieren Sie das Ergebnis auf die 3 häufigsten Begriffe.\n\nHinweis: Eine größere Stoppwort-Liste finden Sie auch unter <a href='https://github.com/stopwords-iso/stopwords-de' target=_blank>github.com/stopwords-iso/stopwords-de</a>.",
+      "lösung": "Lösung ist durch den Link abrufbar",
+      "references": ["Uebung7/7_2Textanalyse.js"]
+    }
+  },
+  "exercise 8":{
+    "A8.1": {
+      "tittle": "Promises",
+      "frage": "Erstellen Sie auf Ihrem lokalen Server (localhost) zwei Text-Dateien <code>A.txt</code> und <code>B.txt</code> mit ungefähr gleich vielen Zeilen. Laden Sie mit der fetch-API parallel beide Text-Dateien vom Server. Geben Sie auf einer Webseite den Inhalt beider Dateien zeilenweise aus, wobei der Anfang der Zeile aus <code>A.txt</code> und das Ende aus <code>B.txt</code> stammen soll. Die beiden Dateien sollen also zeilenweise konkateniert werden. Erzielen Sie max. Geschwindigkeit durch maximale Parallelität. Achten Sie gleichzeitig auf Korrektheit. Verwenden Sie dabei ausschließlich die Promise-API ohne async/await.",
+      "lösung": "<img src='Uebung8/8_1Promises8_1Promises.png' width='100%' height='auto'><br><a href='Uebung8/A.txt' target='_blank'>A.txt</a><br><a href='Uebung8/B.txt' target='_blank'>B.txt</a>",
+      "references": ["Uebung8/8_1Promises.html"]
+    },
+    "A8.2": {
+      "tittle": "async/await",
+      "frage": "Lösen Sie die letzte Aufgabe mit async/await statt Promise.",
+      "lösung": "<img src='Uebung8/async_await.png' width='100%' height='auto'><br><a href='Uebung8/A.txt' target='_blank'>A.txt</a><br><a href='Uebung8/B.txt' target='_blank'>B.txt</a>",
+      "references": ["Uebung8/async_await.html"]
+    },
+    "A8.3": {
+      "tittle": "WWW-Navigator",
+      "frage": "Schreiben Sie einen Navigator für die Fachbegriffe des WWW zu den Oberthemen HTML, CSS und JavaScript. Im Hauptmenü sollen diese 3 Oberthemen zur Auswahl stehen. Im Untermenü soll eine zugehörige Liste von Fachbegriffen zum jeweiligen ausgewählten Oberthema stehen. In der Mitte soll eine Dokumentation zum ausgewählten Fachbegriff erscheinen.\n<img src='https://kaul.inf.h-brs.de/ccm/we/ws24/resources/assets/www-navigator.png' width='auto' height='600'><br>Schreiben Sie in HTML und CSS nur den responsiven Rahmen für einen solchen WWW-Navigator. Dabei können Sie auch ein schöneres Layout als das hier gezeigte erstellen. Die Inhalte sollen in einer JSON-Datei extern gelagert werden. Mit der fetch-API soll die JSON-Datei asynchron nicht-blockierend geladen werden, und zwar nur einmal, nicht mehrfach. (d.h. Sparen Sie Internet-Bandbreite.) Sobald die Inhalte angekommen sind, sollen sie im Browser auch sofort angezeigt werden.\n\nFügen Sie selbst in die JSON-Datei zusätzliche Inhalte zu Themen der Vorlesung als Strings beispielhaft ein. Wenn Sie Inhalte aus fremden Quellen kopieren, so schreiben Sie bitte stets die Quelle als externe Ressource hinzu. Diese soll dann auf der rechten Seite im WWW-Navigator erscheinen.<br>Beispiel für die JSON-Datei:<br><pre style=\"font-size: 0.75em; width: 1300px\">{\n  \"html\": {\n    \"headings\": {\n      \"content\": \"Die Überschrift-Elemente bestehen aus sechs verschiedenen Levels. Das 'h1'-Element ist die Überschrift mit der höchsten Gewichtung und das 'h6'-Element mit der kleinsten. Ein Überschriften-Element beschreibt das Thema des Bereiches, welcher der Überschrift folgt. Überschriften können auch verwendet werden, um ein Inhaltsverzeichnis für ein Dokument automatisch zu erstellen.\",\n      \"references\": [\n        \"https://developer.mozilla.org/de/docs/Web/HTML/Element/h1-h6\"\n      ]\n    },\n    \"paragraph\": {\n      \"content\": \"Das 'p'-Element erzeugt einen Absatz, den zusammenhängenden Abschnitt eines längeren Textes. In HTML kann ein 'p'-Element jedoch für jedwede Art von zu gruppierendem, zusammenhängendem Inhalt genutzt werden, zum Beispiel Bilder oder Formularfelder.\",\n      \"references\": [\n        \"https://developer.mozilla.org/de/docs/Web/HTML/Element/p\"\n      ]\n    }\n  },\n  \"css\": {\n    \"selectors\": {\n      \"content\": \"Selektoren definieren, auf welche Elemente eine Reihe von CSS Regeln angewendet wird.\",\n      \"references\": [\n        \"https://developer.mozilla.org/de/docs/Web/CSS/CSS_Selectors\"\n      ]\n    },\n    \"colors\": {\n      \"content\": \"Der CSS Datentyp Color beschreibt eine Farbe im sRGB Farbraum. Eine Farbe kann auf eine von drei Arten beschrieben werden: Schlüsselworte, rgb und rgba, hsl und hsla. ...\",\n      \"references\": [\n        \"https://developer.mozilla.org/de/docs/Web/CSS/Farben\"\n      ]\n    }\n  },\n  \"javascript\": {\n    \"function\": {\n      \"content\": \"Funktionen sind ein Grundbaustein in JavaScript. Eine Funktion ist eine Prozedur - eine Reihe von Anweisungen, um eine Aufgabe auszuführen oder eine Wert auszurechnen. Um Funktionen zu verwenden, müssen diese im Scope (Gültigkeitsbereich) deklariert werden, in dem sie ausgeführt werden soll.\",\n      \"references\": [\n        \"https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Funktionen\"\n      ]\n    },\n    \"object\": {\n      \"content\": \"Ein Objekt ist eine Sammlung von zusammenhängenden Daten und/oder Funktionalitäten. Diese bestehen üblicherweise aus verschiedenen Variablen und Funktionen, die Eigenschaften und Methoden genannt werden, wenn sie sich innerhalb von Objekten befinden.\",\n      \"references\": [\n        \"https://developer.mozilla.org/de/docs/Learn/JavaScript/Objects/Basics\"\n      ]\n    }\n  }\n}</pre>",
+      "lösung": "Hier ist das Script Teil<br><img src='Uebung8/www-Navegator.png' width='75%'><br>Lösung ist durch den Link abrufbar.",
+      "references": ["Uebung8/www-Navigator.html"]
+    }
+  },
+  "exercise 9":{
+    "A9.1": {
+      "tittle": "SVG Grafik von Hand erstellen",
+      "frage": "Codieren Sie eine HTML-Datei mit Inline SVG, sodass sich folgendes Aussehen ergibt:\n\n<img  src='https://kaul.inf.h-brs.de/ccm/we/ws24/resources/assets/use_the_platform.png' width='auto' height='600px'>\n\nFügen Sie als Hover-Effekt eine CSS-Animation hinzu, die die Größe der SVG-Grafik verdoppelt, wenn man mit dem Cursor über die Grafik geht.",
+      "lösung": "<img src='Uebung9/9_1.png' width='75%'>",
+      "references": ["Uebung9/9_1.html"]
+    },
+    "A9.2": {
+      "tittle": "Statistik-Balkendiagramm in SVG",
+      "frage": "Implementieren Sie ein eigenes Balkendiagramm mit HTML, Inline SVG, CSS und JavaScript. Geben Sie die Daten für das Balkendiagramm im JSON-Format vor. Nehmen Sie als Beispieldaten <a href='https://www.smard.de/home/downloadcenter/download-marktdaten/' target='_blank'>Marktdaten von der Bundesnetzagentur</a>. Animieren Sie die Grafik (siehe z.B. <a href='https://www.highcharts.com/demo/highcharts/bar-basic' target='_blank'>Highchart Bar Chart</a>).",
+      "lösung": "<img src='Uebung9/Balkendiagramm.png' width='75%'>",
+      "references": ["Uebung9/9_2.html"]
+    },
+    "A9.3": {
+      "tittle": "Interaktive SVG Grafik",
+      "frage": "Implementieren Sie das Spiel <a href='https://de.wikipedia.org/wiki/Tic-Tac-Toe' target='_blank'>Tic-Tac-Toe</a> als HTML-Datei mit Inline SVG, CSS und JS.",
+      "lösung": "die Lösung ist durch den Link abrufbar",
+      "references": ["Uebung9/9_3.html"]
+    }
+  },
+  "exercise 10":{
+    "A10.1": {
+      "tittle": "Static classes in TypeScript",
+      "frage": "Gibt es in TypeScript statische Klassen? Erläutern Sie den Unterschied von TypeScript zu anderen objekt-orientierten, statisch typisierten Programmiersprachen wie Java und C#.",
+      "lösung": "<a href='Uebung10/10_1.html' target='_parent'>Hier sind die Unterschiede</a>",
+      "references": []
+    },
+    "A10.2": {
+      "tittle": "",
+      "frage": "",
+      "lösung": "",
+      "references": []
+    },
+    "A10.3": {
+      "tittle": "",
       "frage": "",
       "lösung": "",
       "references": []
     }
-  },
-  "exercise 8":{
-    "A8.1": {},
-    "A8.2": {},
-    "A8.3": {}
-  },
-  "exercise 9":{
-    "A9.1": {},
-    "A9.2": {},
-    "A9.3": {}
-  },
-  "exercise 10":{
-    "A10.1": {},
-    "A10.2": {},
-    "A10.3": {}
   }
 }

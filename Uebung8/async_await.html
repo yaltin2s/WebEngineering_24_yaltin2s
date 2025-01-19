@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text-Dateien kombinieren</title>
+</head>
+<body>
+<h1>Zeilenweises Kombinieren von A.txt und B.txt</h1>
+<div id="output"></div>
+
+<script>
+  // Funktion zum Laden einer Textdatei
+  async function fetchTextFile(url) {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Fehler beim Laden der Datei: ${url}`);
+    }
+    return await response.text();
+  }
+  // Dateien laden und verarbeiten
+  async function combineFiles() {
+    try {
+      // Inhalte parallel laden
+      const [contentA, contentB] = await Promise.all([
+        fetchTextFile('A.txt'),
+        fetchTextFile('B.txt')
+      ]);
+      // Inhalte in Zeilen aufteilen
+      const linesA = contentA.split('\n');
+      const linesB = contentB.split('\n');
+      // Maximale Zeilenanzahl ermitteln
+      const maxLines = Math.max(linesA.length, linesB.length);
+      // Zeilenweise kombinieren
+      const combinedLines = [];
+      for (let i = 0; i < maxLines; i++) {
+        const lineA = linesA[i] || ''; // Fallback für fehlende Zeilen
+        const lineB = linesB[i] || '';
+        combinedLines.push(`${lineA} ${lineB}`);
+      }
+      // Ergebnis auf der Webseite anzeigen
+      const outputDiv = document.getElementById('output');
+      combinedLines.forEach(line => {
+        const p = document.createElement('p');
+        p.textContent = line;
+        outputDiv.appendChild(p);
+      });
+    } catch (error) {
+      console.error('Fehler:', error);
+      document.getElementById('output').textContent = 'Fehler beim Laden der Dateien.';
+    }
+  }
+  // Verarbeitung starten
+  combineFiles();
+</script>
+</body>
+</html>
