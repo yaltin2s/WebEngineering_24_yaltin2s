@@ -1,215 +1,65 @@
-// Import der benötigten Module
+import { serve } from "https://deno.land/std@0.182.0/http/server.ts";
 
-import { serve } from 'https://deno.land/std/http/server.ts';
+// Hilfsfunktionen zur Berechnung
+function berechneStatistiken(values: number[]) {
+    const summe = values.reduce((acc, val) => acc + val, 0);
+    const durchschnitt = summe / values.length;
+    const minimum = Math.min(...values);
+    const maximum = Math.max(...values);
 
-// Typdefinitionen
-
-interface MarketData {
-
-    name: string;
-
-    value: number;
-
+    return { summe, durchschnitt, minimum, maximum };
 }
 
-// URL der Marktdaten (Beispiel-URL; durch die echte URL ersetzen)
+async function ladeDaten(): Promise<any[]> {
+    const decoder = new TextDecoder("utf-8");
+    const jsonData = await Deno.readFile("daten.json");
+    return JSON.parse(decoder.decode(jsonData));
+}
 
-const MARKET_DATA_URL = "https://example.com/market-data";
+// Server erstellen
+let server: any;
+server = serve({"port": 8000});
+console.log("Server läuft auf http://localhost:8000");
 
-// Funktion: HTTP-Anfrage an die Bundesnetzagentur
-
-// @ts-ignore
-async function fetchMarketData(): Promise<MarketData[]> {
-
+for await (const request of server) {
     try {
+        const daten = await ladeDaten();
 
-        const response = await fetch(MARKET_DATA_URL);
+        // Extrahiere die Nettoexport-Werte (ohne leere oder ungültige Werte)
+        const nettoExportWerte = daten
+            .map((eintrag) =>
+                parseFloat(
+                    eintrag["Nettoexport [MWh] Berechnete Auflösungen"].replace(",", "")
+                )
+            )
+            .filter((wert) => !isNaN(wert));
 
-        if (!response.ok) {
+        const statistiken = berechneStatistiken(nettoExportWerte);
 
-            throw new Error(`HTTP-Error: ${response.status}`);
+        // HTML-Antwort generieren
+        const html = `
+      <!DOCTYPE html>
+      <html lang="de">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Statistiken</title>
+      </head>
+      <body>
+        <h1>Statistiken aus daten.json</h1>
+        <ul>
+          <li>Summe: ${statistiken.summe.toFixed(2)} MWh</li>
+          <li>Durchschnitt: ${statistiken.durchschnitt.toFixed(2)} MWh</li>
+          <li>Minimum: ${statistiken.minimum.toFixed(2)} MWh</li>
+          <li>Maximum: ${statistiken.maximum.toFixed(2)} MWh</li>
+        </ul>
+      </body>
+      </html>
+    `;
 
-        }
-
-        const data: MarketData[] = await response.json();
-
-        return data;
-
+        request.respond({ body: html, headers: new Headers({ "Content-Type": "text/html" }) });
     } catch (error) {
-
-        console.error("Fehler beim Abrufen der Marktdaten:", error.message);
-
-        return [];
-
+        console.error("Fehler:", error);
+        request.respond({ status: 500, body: "Interner Serverfehler" });
     }
-
 }
-
-// Funktion: Statistiken berechnen
-
-function calculateStatistics(data: MarketData[]): {
-
-    min: number;
-
-    max: number;
-
-    average: number;
-
-    sum: number;
-
-} {
-
-    const values = data.map((item) => item.value);
-
-    const sum = values.reduce((acc, curr) => acc + curr, 0);
-
-    const min = Math.min(...values);
-
-    const max = Math.max(...values);
-
-    const average = sum / values.length || 0;
-
-    return { min, max, average, sum };
-
-}
-
-// Funktion: HTML-Seite generieren
-
-function generateHTML(
-
-    stats: { min: number; max: number; average: number; sum: number },
-
-    data: MarketData[]
-
-): string {
-
-    const rows = data
-
-        .map(
-
-            (item) =>
-
-                `<tr><td>${item.name}</td><td>${item.value.toFixed(2)}</td></tr>`
-
-        )
-
-        .join("");
-
-    return `
-
-    <!DOCTYPE html>
-
-    <html lang="de">
-
-    <head>
-
-      <meta charset="UTF-8">
-
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-      <title>Marktdaten Analyse</title>
-
-      <style>
-
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-
-        th { background-color: #f4f4f4; }
-
-      </style>
-
-    </head>
-
-    <body>
-
-      <h1>Marktdaten Analyse</h1>
-
-      <p>Min: ${stats.min.toFixed(2)}</p>
-
-      <p>Max: ${stats.max.toFixed(2)}</p>
-
-      <p>Durchschnitt: ${stats.average.toFixed(2)}</p>
-
-      <p>Summe: ${stats.sum.toFixed(2)}</p>
-
-      <table>
-
-        <thead>
-
-          <tr>
-
-            <th>Name</th>
-
-            <th>Wert</th>
-
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          ${rows}
-
-        </tbody>
-
-      </table>
-
-    </body>
-
-    </html>
-
-  `;
-
-}
-
-// Server starten
-
-const PORT = 8000;
-
-console.log(`HTTP-Webserver läuft auf http://localhost:${PORT}/`);
-
-serve(async (req) => {
-
-    try {
-
-        // Marktdaten abrufen
-
-        const data = await fetchMarketData();
-
-        if (data.length === 0) {
-
-            return new Response("Fehler: Keine Marktdaten verfügbar.", {
-
-                status: 500,
-
-            });
-
-        }
-
-        // Statistiken berechnen
-
-        const stats = calculateStatistics(data);
-
-        // HTML-Seite generieren
-
-        const html = generateHTML(stats, data);
-
-        // HTML zurückgeben
-
-        return new Response(html, {
-
-            headers: { "Content-Type": "text/html" },
-
-        });
-
-    } catch (error) {
-
-        console.error("Fehler im Server:", error.message);
-
-        return new Response("Interner Serverfehler", { status: 500 });
-
-    }
-
-});
-

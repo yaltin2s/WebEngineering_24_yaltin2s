@@ -220,13 +220,13 @@
     "A10.1": {
       "tittle": "Static classes in TypeScript",
       "frage": "Gibt es in TypeScript statische Klassen? Erläutern Sie den Unterschied von TypeScript zu anderen objekt-orientierten, statisch typisierten Programmiersprachen wie Java und C#.",
-      "lösung": "<a href='Uebung10/10_1.html' target='_parent'>Hier sind die Unterschiede</a>",
-      "references": []
+      "lösung": "Lösung ist durch den Link abrufbar",
+      "references": ["Uebung10/10_1.html"]
     },
     "A10.2": {
-      "tittle": "",
-      "frage": "",
-      "lösung": "",
+      "tittle": "Fehler finden mit TypeScript",
+      "frage": "Gegeben sei folgendes fehlerbehaftete JavaScript-Programm. Ergänzen Sie dieses um möglichst viele Typisierungen und übersetzen Sie es in ein TypeScript-Programm.<pre>const add = (x,y) => x+y;\nconst equals = (x,y) => x===y;\n\nconsole.log( add(1,2) );\nconsole.log( add(true, true ) );\nconsole.log( add(true, false ) );\nvar x = y = 1;\nconsole.log( add(equals(x,y), equals(y,x)) );</pre>\nWas ist der Fehler im gegebenen JavaScript-Code? Welche Fehler meldet TypeScript? Geben Sie weitere Beispiele an, wie TypeScript bei der Fehlersuche helfen kann.",
+      "lösung": "<pre>function add(x: number, y: number): number {\n  return x + y;\n}\nfunction equals(x: any, y: any): boolean {\n  return x === y;\n}\nconsole.log(add(1, 2)); // Ausgabe: 3\n// Fehler vermeiden - Boolean in Zahl umwandeln\nconsole.log(add(Number(true), Number(true))); // Ausgabe: 2\nconsole.log(add(Number(true), Number(false))); // Ausgabe: 1\nlet x: number = 1;\nlet y: number = 1;\nconsole.log(add(Number(equals(x, y)), Number(equals(y, x)))); // Ausgabe: 2</pre>\n<ol><li>Fehlender Typenschutz:\nDie Funktion add und equals haben keine Typüberprüfung, was dazu führt, dass beliebige Argumenttypen übergeben werden können.\nBeispielsweise wird add(true, true) und add(true, false) aufgerufen. In JavaScript werden true und false zu 1 und 0 konvertiert, was zu unvorhergesehenen Ergebnissen führen kann.</li><li> Ungültige Deklaration von x und y:\nDer Ausdruck <code>var x = y = 1;</code> deklariert x mit var, setzt jedoch y ohne explizite Deklaration. In JavaScript wird y dadurch implizit als globale Variable erzeugt, was zu unerwartetem Verhalten führen kann.</li><li> Kein Schutz vor Typfehlern:\nDie Funktion add erwartet eigentlich numerische Werte, während die Rückgabewerte von equals (vom Typ boolean) ebenfalls als Argumente übergeben werden. Dies ist konzeptionell falsch.</li></ol>",
       "references": []
     },
     "A10.3": {
