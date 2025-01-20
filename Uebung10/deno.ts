@@ -1,21 +1,17 @@
 import { serve } from "https://deno.land/std@0.182.0/http/server.ts";
-
 // Hilfsfunktionen zur Berechnung
 function berechneStatistiken(values: number[]) {
     const summe = values.reduce((acc, val) => acc + val, 0);
     const durchschnitt = summe / values.length;
     const minimum = Math.min(...values);
     const maximum = Math.max(...values);
-
     return { summe, durchschnitt, minimum, maximum };
 }
-
 async function ladeDaten(): Promise<any[]> {
     const decoder = new TextDecoder("utf-8");
     const jsonData = await Deno.readFile("daten.json");
     return JSON.parse(decoder.decode(jsonData));
 }
-
 // Server erstellen
 let server: any;
 server = serve({"port": 8000});

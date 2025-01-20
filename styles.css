@@ -141,3 +141,23 @@ pre{
         color: white;
     }
 }
+/* Responsive Design */
+@media (min-width: 768px) {
+    .container {
+        grid-template-columns: 25% 50% 25%;
+        grid-template-areas:"header header header"
+                "sidebar-left content sidebar-right"
+                " "
+        /* Sidebar links und rechts 1/3, Content 2/3 */
+    }
+    .main {
+        display: grid;
+        grid-template-columns: 25% 50% 25%;
+        grid-template-areas:
+            "sidebar-left content sidebar-right";
+    }
+    .sidebar-left, .sidebar-right, .content {
+        height: auto;
+        float: left;
+    }
+}
