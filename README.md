@@ -1,2 +1,2 @@
-Yousef Altinawi 
-Yaltin2s 
+Name: Yousef Altinawi  
+Kurzel: Yaltin2s 
